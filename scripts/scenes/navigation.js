@@ -22,6 +22,5 @@ Crafty.defineScene('Navigation', (function() {
   
   
   return function(sceneData) {
-    
   };
 })());
