@@ -18,9 +18,10 @@ Crafty.defineScene('Navigation', (function() {
       .attr(nodeData.attr)
   };
   
-  
+  console.log('fdsdfs');
   
   
   return function(sceneData) {
+    
   };
 })());
