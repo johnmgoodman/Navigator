@@ -4,7 +4,8 @@
     "images": [
       'assets/images/galaxy_0_72x72.png',
       'assets/images/galaxy_1_72x72.png',
-      'assets/images/galaxy_2_72x72.png'
+      'assets/images/galaxy_2_72x72.png',
+      'assets/images/stars_0_900x900.png'
     ]
   },
   
@@ -37,6 +38,15 @@
           h: 72,
         },
         image: 'assets/images/galaxy_1_72x72.png'
+      },
+      {
+        attr: {
+          x: 420,
+          y: 757,
+          w: 72,
+          h: 72,
+        },
+        image: 'assets/images/galaxy_3_72x72.png'
       }
     ]
     
