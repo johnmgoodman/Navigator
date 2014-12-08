@@ -20,6 +20,7 @@ Crafty.defineScene('Navigation', (function() {
     
     node = Crafty.e('NavNode')
       .attr(nodeData.attr)
+      .data(nodeData);
     
     if(typeof nodeData.image !== 'undefined') {
       node.css('background','url('+nodeData.image+') center');
@@ -58,24 +59,8 @@ Crafty.defineScene('Navigation', (function() {
         x: 0,
         y: 0
       });
-    
-    Crafty.e('ParallaxLayer')
-      .attr({w:900,h:500})
-      .css('background-image','url(assets/images/stars_0_900x900.png)')
-      .parallax(
-        {x:0,y:0},
-        {x:background.w-Crafty.viewport.width,y:background.h-Crafty.viewport.height}
-      );
-    
-    Crafty.e('ParallaxLayer')
-      .attr({w:1000,h:600})
-      .origin('center')
-      .css('background-image','url(assets/images/stars_0_900x900.png)')
-      .parallax(
-        {x:0,y:0},
-        {x:background.w-Crafty.viewport.width,y:background.h-Crafty.viewport.height}
-      ).rotation = 180;
       
+    
     if(sceneData.nodes instanceof Array) {
       createNavNodes(sceneData.nodes);
     }

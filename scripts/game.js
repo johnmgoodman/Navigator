@@ -28,6 +28,7 @@
           w: 72,
           h: 72,
         },
+        title: 'M331-I0',
         image: 'assets/images/galaxy_2_72x72.png'
       },
       {
@@ -37,6 +38,7 @@
           w: 72,
           h: 72,
         },
+        title: 'M61-I0',
         image: 'assets/images/galaxy_1_72x72.png'
       },
       {
@@ -46,6 +48,7 @@
           w: 72,
           h: 72,
         },
+        title: 'M139-G4',
         image: 'assets/images/galaxy_3_72x72.png'
       }
     ]
