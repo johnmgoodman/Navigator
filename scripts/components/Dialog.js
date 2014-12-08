@@ -11,6 +11,18 @@ Crafty.c('Dialog', {
       })
       .bind('ViewportScroll',this.destroy)
       .bind('NewDialog',this.destroy);
+  },
+  
+  
+  title: function(dialogTitle) {
+    this._title = Crafty.e('DialogText')
+      .attr({
+        x: this.x + 10,
+        y: this.y + 10,
+        h: 16,
+        w: this.w - 20
+      })
+      .text(dialogTitle);
   }
 
 });
