@@ -1,9 +1,27 @@
 Crafty.c('NavNodeButton', {
   
-  
+  _text: function(buttonText) {
+    this._element.innerHTML = buttonText;
+  },
     
   init: function() {
-    this.requires('2D, DOM, Text, Mouse')
+    this.requires('2D, DOM, Mouse')
+      .bind('NavNodeClick',this.destroy)
+      .css({
+        textAlign: 'center',
+        userSelect: 'none',
+        cursor: 'pointer',
+        border: '1px solid #ffffff',
+        borderRadius: '6px',
+        fontSize: '12px',
+        lineHeight: '26px',
+        color: '#ffffff',
+        fontFamily: 'monaco'
+      });
+  },
+  
+  text: function(buttonText) {
+    this._text(buttonText);
   },
   
   action: function(cb, context) {
@@ -14,11 +32,7 @@ Crafty.c('NavNodeButton', {
     } else {
       this.bind('Click', function() { cb.call(context) });
     }
-  }, 
-  
-  
-  value: function(buttonText) {
-    this.text = buttonText;
+    return this;
   }
   
   

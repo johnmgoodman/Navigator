@@ -20,7 +20,7 @@ Crafty.defineScene('Navigation', (function() {
     
     node = Crafty.e('NavNode')
       .attr(nodeData.attr)
-      .data(nodeData);
+      .title(nodeData.title);
     
     if(typeof nodeData.image !== 'undefined') {
       node.css('background','url('+nodeData.image+') center');
