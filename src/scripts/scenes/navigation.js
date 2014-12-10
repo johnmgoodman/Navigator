@@ -7,6 +7,7 @@ Crafty.defineScene('Navigation', (function() {
    *
    *  @private
    *  @param {Object} nodeData - Object describing desired NavNode.
+   *  @param {Object} defaults - Object to use for data that the nodeData object doesn't have.
    *  @return {NavNode} The new NavNode
    */
    
@@ -27,8 +28,7 @@ Crafty.defineScene('Navigation', (function() {
       .key(nodeData._key)
       .css('background','url('+(nodeData.image||defaults.image)+') center')
       .target('Navigation',{
-        sceneNode: nodeData._key,
-        viewport: {x: 0, y:0}
+        sceneNode: nodeData._key
       });
       
     node.title(nodeData._node.title);
@@ -76,15 +76,14 @@ Crafty.defineScene('Navigation', (function() {
     if(typeof sceneNode.image !== 'undefined') {
       background.css('background-image','url('+sceneNode.image+')');
     }
-      
     
     if(typeof navNodesData !== 'undefined') {
       createNavNodes(navNodesData);
     }
     
     Crafty.viewport.clampToEntities = true;
-    Crafty.viewport.x = (sceneNode.viewport || param.viewport).x;
-    Crafty.viewport.y = (sceneNode.viewport || param.viewport).y;
+    Crafty.viewport.x = (param.viewport || sceneNode.viewport).x;
+    Crafty.viewport.y = (param.viewport || sceneNode.viewport).y;
     Crafty.viewport.mouselook(true);
   };
 })());
