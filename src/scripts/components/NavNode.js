@@ -1,7 +1,7 @@
 Crafty.c('NavNode', {
 
   _createButton: function() {
-    Crafty.e('NavNodeButton')
+    var goButton = Crafty.e('NavNodeButton')
       .attr({
         x: this.x + this.w + 10,
         y: this.y,
@@ -10,6 +10,13 @@ Crafty.c('NavNode', {
       })
       .css({backgroundColor: '#008800'})
       .text('Go');
+      
+    if(typeof this._target !== 'undefined') {
+      goButton.action(
+        function() {Crafty.enterScene(this._target.sceneName,this._target.params);},
+        this
+      );
+    }
   },
   
   _onClick: function(e) {
@@ -21,6 +28,13 @@ Crafty.c('NavNode', {
     this.requires('2D, DOM, Mouse')
       .css('cursor', 'pointer')
       .bind('Click',this._onClick);
+  },
+  
+  target: function(sceneName,params) {
+    this._target = {
+      sceneName: sceneName,
+      params: params
+    };
   },
   
   title: function(titleText) {

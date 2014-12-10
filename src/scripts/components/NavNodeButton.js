@@ -23,6 +23,7 @@ Crafty.c('NavNodeButton', {
   
   text: function(buttonText) {
     this._text(buttonText);
+    return this;
   },
   
   action: function(cb, context) {
@@ -31,7 +32,7 @@ Crafty.c('NavNodeButton', {
     } else if(context === this) {
       this.bind('Click', cb);
     } else {
-      this.bind('Click', function() { cb.call(context) });
+      this.bind('Click', function() { cb.call(context); });
     }
     return this;
   }

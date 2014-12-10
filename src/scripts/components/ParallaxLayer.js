@@ -29,7 +29,7 @@ Crafty.c('ParallaxLayer', {
   },
     
   init: function() {
-    this.requires('2D, DOM')
+    this.requires('2D, DOM');
   },
   
   parallax: function(viewportMin,viewportMax) {

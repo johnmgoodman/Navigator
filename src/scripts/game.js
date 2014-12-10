@@ -14,9 +14,6 @@
   
   Crafty.init(window.width,window.height,window.document.getElementById('gamescreen'));    
   Crafty.load(gameAssets,function() {
-    Crafty.enterScene('Navigation', {
-        sceneNode: '_top',
-        viewport: {x: -300, y: -120}
-    });
+    Crafty.enterScene('Navigation', {sceneNode: '_top'});
   });
 })(Crafty);

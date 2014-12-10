@@ -25,8 +25,12 @@ Crafty.defineScene('Navigation', (function() {
         x: nodeData.x,
         y: nodeData.y
       })
-      .title(nodeData._title)
-      .css('background','url('+(nodeData.image||defaults.image)+') center');
+      .title(nodeData._node.title)
+      .css('background','url('+(nodeData.image||defaults.image)+') center')
+      .target('Navigation',{
+        sceneNode: nodeData._key,
+        viewport: {x: 0, y:0}
+      });
       
     return node;
   },
@@ -43,11 +47,12 @@ Crafty.defineScene('Navigation', (function() {
   createNavNodes = function(nodesData) {
     var nodeKey,
       nodes = {},
-      defaults = nodesData['_default'];
+      defaults = nodesData._default;
       
     for(nodeKey in nodesData) {
       if(nodesData.hasOwnProperty(nodeKey) && nodeKey !== '_default') {
-        nodesData[nodeKey]._title = Crafty.Game.navigationNodes[nodeKey].title;
+        nodesData[nodeKey]._key = nodeKey;
+        nodesData[nodeKey]._node = Crafty.Game.navigationNodes[nodeKey];
         nodes[nodeKey] = navNodeFactory(nodesData[nodeKey],defaults);
       }
     }
@@ -73,8 +78,8 @@ Crafty.defineScene('Navigation', (function() {
     }
     
     Crafty.viewport.clampToEntities = true;
-    Crafty.viewport.x = param.viewport.x;
-    Crafty.viewport.y = param.viewport.y;
+    Crafty.viewport.x = (sceneNode.viewport || param.viewport).x;
+    Crafty.viewport.y = (sceneNode.viewport || param.viewport).y;
     Crafty.viewport.mouselook(true);
   };
 })());

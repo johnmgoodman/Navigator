@@ -1,8 +1,10 @@
 {
   "navigationNodes": {
       "_top": {
+          "title": "Outer Space",
           "sceneWidth": 1400,
           "sceneHeight": 900,
+          "viewport": {"x": -300, "y":-320},
           "children": {
               "_default": {
                   "width":72,
@@ -37,23 +39,31 @@
         },
       "niphar": {
           "title": "Niphar",
-          "children":{}
+          "sceneWidth": 900,
+          "sceneHeight": 600,
+          "children":{
+              "_default": {
+                  "width": 72,
+                  "height": 72,
+                  "image": "assets/images/galaxy_1_72x72.png"
+                },
+              "_top": {
+                  "x": 100,
+                  "y": 100
+                }
+            }
         },
       "lorefim zeta": {
-          "title": "Lorefim Zeta",
-          "children":{}
+          "title": "Lorefim Zeta"
         },
       "ozur": {
-          "title": "Ozur",
-          "children":{}
+          "title": "Ozur"
         },
       "irda vo": {
-          "title": "Irda Vo",
-          "children":{}
+          "title": "Irda Vo"
         },
       "moth mita": {
-          "title": "Moth Mita",
-          "children":{}
+          "title": "Moth Mita"
         }
     }
 }
