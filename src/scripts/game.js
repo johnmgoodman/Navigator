@@ -8,8 +8,10 @@
   require('./components/NavNodeText.js');
   require('./components/NavNodeButton.js');
   require('./components/ParallaxLayer.js');
+  require('./components/StoryNode.js');
   
   require('./scenes/navigation.js');
+  require('./scenes/story.js');
   
   Crafty.Game = {};
   Crafty.Game.navigationNodes = require('./gamedata/navigation.json');
