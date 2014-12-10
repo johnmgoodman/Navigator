@@ -1,0 +1,39 @@
+{
+  "name": "navigator",
+  "version": "0.0.1",
+  "title": "Navigator: The Journey Home",
+  "author": {
+    "name": "John Goodman"
+  },
+  "branches": {
+    "develop": true
+  },
+  "main": "src/navigator.js",
+  "repository": {
+    "type": "git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    },
+    {
+      "type": "GPL",
+      "url": "http://www.opensource.org/licenses/gpl-license.php"
+    }
+  ],
+  "description": "An experimental interactive fiction exploring outer space.",
+  "dependencies": {
+    "craftyjs": "^0.6.3"
+  },
+  "devDependencies": {
+    "gulp":"*",
+    "gulp-browserify": "*",
+    "gulp-sass": "*",
+    "gulp-jade": "*",
+    "gulp-util": "*",
+    "gulp-uglify": "*",
+    "gulp-jshint":"*",
+    "jshint-stylish": "*"
+  }
+}

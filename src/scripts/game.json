@@ -1,0 +1,51 @@
+{
+  "navigationNodes": {
+      "_top": {
+          "children": {
+              "_default": {
+                  "size": {"width":72, "height": 72},
+                  "image": "assets/images/galaxy_1_72x72.png"
+                },
+              "niphar": {
+                  "position": {"x":400, "y": 400},
+                  "image": "assets/images/galaxy_2_72x72.png"
+                },
+              "lorefim zeta": {
+                  "position": {"x":620, "y": 480}
+                },
+              "ozur": {
+                  "position": {"x": 420, "y": 757},
+                  "image": "assets/images/galaxy_3_72x72.png"
+                },
+              "irda vo": {
+                  "position": {"x": 720, "y": 640},
+                  "image": "assets/images/galaxy_4_72x72.png"
+                },
+              "moth mita": {
+                  "position": {"x": 600, "y": 40},
+                  "image": "assets/images/galaxy_0_72x72.png"
+                }
+            }
+        },
+      "niphar": {
+          "title": "Niphar",
+          "children":{}
+        },
+      "lorefim zeta": {
+          "title": "Lorefim Zeta",
+          "children":{}
+        },
+      "ozur": {
+          "title": "Ozur",
+          "children":{}
+        },
+      "irda vo": {
+          "title": "Irda Vo",
+          "children":{}
+        },
+      "moth mita": {
+          "title": "Moth Mita",
+          "children":{}
+        }
+    }
+}
