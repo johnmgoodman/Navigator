@@ -10,21 +10,23 @@ Crafty.defineScene('Navigation', (function() {
    *  @return {NavNode} The new NavNode
    */
    
-  var navNodeFactory = function(nodeData) {
+  var navNodeFactory = function(nodeData,defaults) {
     var node;
     
     if(typeof nodeData === 'string') {
       nodeData = JSON.parse(nodeData);
     }
     
-    
+    console.log(defaults);
     node = Crafty.e('NavNode')
-      .attr(nodeData.attr)
-      .title(nodeData.title);
-    
-    if(typeof nodeData.image !== 'undefined') {
-      node.css('background','url('+nodeData.image+') center');
-    }
+      .attr({
+        w: nodeData.width || defaults.width,
+        h: nodeData.height || defaults.height,
+        x: nodeData.x,
+        y: nodeData.y
+      })
+      .title(nodeData._title)
+      .css('background','url('+(nodeData.image||defaults.image)+') center');
       
     return node;
   },
@@ -39,35 +41,40 @@ Crafty.defineScene('Navigation', (function() {
    *  @return {NavNode} Array of the new NavNodes
    */
   createNavNodes = function(nodesData) {
-    var nodesCount = nodesData.length,
-      nodeIndex = 0,
-      nodes = [];
+    var nodeKey,
+      nodes = {},
+      defaults = nodesData['_default'];
       
-    for(;nodeIndex < nodesCount; nodeIndex+=1) {
-      nodes[nodeIndex] = navNodeFactory(nodesData[nodeIndex]);
+    for(nodeKey in nodesData) {
+      if(nodesData.hasOwnProperty(nodeKey) && nodeKey !== '_default') {
+        nodesData[nodeKey]._title = Crafty.Game.navigationNodes[nodeKey].title;
+        nodes[nodeKey] = navNodeFactory(nodesData[nodeKey],defaults);
+      }
     }
     
     return nodes;
-  }
+  };
   
-  return function(sceneData) {
+  return function(param) {
     
-    var background = Crafty.e('Outerspace')
+    var sceneNode = Crafty.Game.navigationNodes[param.sceneNode],
+      navNodesData = sceneNode.children,
+      background = Crafty.e('Outerspace')
       .attr({
-        w: sceneData.width,
-        h: sceneData.height,
+        w: sceneNode.sceneWidth,
+        h: sceneNode.sceneHeight,
         x: 0,
         y: 0
       });
       
     
-    if(sceneData.nodes instanceof Array) {
-      createNavNodes(sceneData.nodes);
+    if(typeof navNodesData !== 'undefined') {
+      createNavNodes(navNodesData);
     }
     
     Crafty.viewport.clampToEntities = true;
-    Crafty.viewport.x = sceneData.viewport.x;
-    Crafty.viewport.y = sceneData.viewport.y;
+    Crafty.viewport.x = param.viewport.x;
+    Crafty.viewport.y = param.viewport.y;
     Crafty.viewport.mouselook(true);
   };
 })());
