@@ -5,6 +5,7 @@
   require('./components/Player.js');
   require('./components/Outerspace.js');
   require('./components/NavNode.js');
+  require('./components/NavNodeText.js');
   require('./components/NavNodeButton.js');
   require('./components/ParallaxLayer.js');
   

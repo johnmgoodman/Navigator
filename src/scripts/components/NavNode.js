@@ -20,7 +20,7 @@ Crafty.c('NavNode', {
   },
   
   _onClick: function(e) {
-    Crafty.trigger('NavNodeClick',this);
+    Crafty.trigger('NavNodeClick',this._key);
     this._createButton();
   },
     
@@ -35,38 +35,25 @@ Crafty.c('NavNode', {
       sceneName: sceneName,
       params: params
     };
+    return this;
+  },
+  
+  key: function(navNodeKey) {
+    this._key = navNodeKey;
+    return this;
   },
   
   title: function(titleText) {
-    var self = this;
     if(typeof this._titleEntity === 'undefined') {
-      this._titleEntity = Crafty.e('2D, DOM, Text')
-        .css({
-          textAlign: 'center'
-        })
-        .unselectable()
-        .textColor('#ffffff')
-        .textFont({size:'10px',family:'monaco'})
+      this._titleEntity = Crafty.e('NavNodeText')
+        .navNodeKey(this._key)
+        .width(this.w +32)
+        .addLine(titleText)
         .attr({
           x: this.x,
-          y: this.y + this.h - 8,
-          w: this.w,
-          h: 12
-        })
-        .bind('ViewportScroll',function(){this.visible=false;})
-        .bind('NavNodeClick',function(navNode) {
-          if(navNode === self) {
-            this.visible = true;
-          } else {
-            this.visible = false;
-          }
+          y: this.y + this.h - 8
         });
-        
-      this._titleEntity.visible = false;
     }
-    
-    this._titleEntity.text(titleText);
-    
     return this;
   }
   

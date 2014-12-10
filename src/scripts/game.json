@@ -2,8 +2,8 @@
   "navigationNodes": {
       "_top": {
           "title": "Outer Space",
-          "sceneWidth": 1400,
-          "sceneHeight": 900,
+          "width": 1400,
+          "height": 900,
           "viewport": {"x": -300, "y":-320},
           "children": {
               "_default": {
@@ -38,9 +38,9 @@
             }
         },
       "niphar": {
-          "title": "Niphar",
-          "sceneWidth": 900,
-          "sceneHeight": 600,
+          "title": "Niphar<br/>test",
+          "width": 900,
+          "height": 600,
           "children":{
               "_default": {
                   "width": 72,

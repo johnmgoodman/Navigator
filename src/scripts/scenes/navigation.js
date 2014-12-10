@@ -17,7 +17,8 @@ Crafty.defineScene('Navigation', (function() {
       nodeData = JSON.parse(nodeData);
     }
     
-    console.log(defaults);
+    console.log(nodeData);
+    
     node = Crafty.e('NavNode')
       .attr({
         w: nodeData.width || defaults.width,
@@ -25,12 +26,14 @@ Crafty.defineScene('Navigation', (function() {
         x: nodeData.x,
         y: nodeData.y
       })
-      .title(nodeData._node.title)
+      .key(nodeData._key)
       .css('background','url('+(nodeData.image||defaults.image)+') center')
       .target('Navigation',{
         sceneNode: nodeData._key,
         viewport: {x: 0, y:0}
       });
+      
+    node.title(nodeData._node.title);
       
     return node;
   },
@@ -66,8 +69,8 @@ Crafty.defineScene('Navigation', (function() {
       navNodesData = sceneNode.children,
       background = Crafty.e('Outerspace')
       .attr({
-        w: sceneNode.sceneWidth,
-        h: sceneNode.sceneHeight,
+        w: sceneNode.width,
+        h: sceneNode.height,
         x: 0,
         y: 0
       });
