@@ -13,7 +13,7 @@ Crafty.c('NavNode', {
   },
   
   _onClick: function(e) {
-    Crafty.trigger('NavNodeClick');
+    Crafty.trigger('NavNodeClick',this);
     this._createButton();
   },
     
@@ -24,7 +24,7 @@ Crafty.c('NavNode', {
   },
   
   title: function(titleText) {
-    
+    var self = this;
     if(typeof this._titleEntity === 'undefined') {
       this._titleEntity = Crafty.e('2D, DOM, Text')
         .css({
@@ -38,10 +38,21 @@ Crafty.c('NavNode', {
           y: this.y + this.h - 8,
           w: this.w,
           h: 12
+        })
+        .bind('ViewportScroll',function(){this.visible=false;})
+        .bind('NavNodeClick',function(navNode) {
+          if(navNode === self) {
+            this.visible = true;
+          } else {
+            this.visible = false;
+          }
         });
+        
+      this._titleEntity.visible = false;
     }
     
     this._titleEntity.text(titleText);
+    
     return this;
   }
   
