@@ -16,11 +16,11 @@
                   "y": 400,
                   "image": "assets/images/galaxy_2_72x72.png"
                 },
-              "lorefim zeta": {
+              "lodurim zeta": {
                   "x":620,
                   "y": 480
                 },
-              "ozur": {
+              "ozumiti": {
                   "x": 420,
                   "y": 757,
                   "image": "assets/images/galaxy_3_72x72.png"
@@ -38,9 +38,10 @@
             }
         },
       "niphar": {
-          "title": "Niphar<br/>test",
+          "title": "Niphar",
           "width": 900,
           "height": 600,
+          "image": "assets/images/galaxy_2_900x900.png",
           "children":{
               "_default": {
                   "width": 72,
@@ -53,11 +54,11 @@
                 }
             }
         },
-      "lorefim zeta": {
-          "title": "Lorefim Zeta"
+      "lodurim zeta": {
+          "title": "Lodurim Zeta"
         },
-      "ozur": {
-          "title": "Ozur"
+      "ozumiti": {
+          "title": "Ozumiti"
         },
       "irda vo": {
           "title": "Irda Vo"

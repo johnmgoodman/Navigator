@@ -17,8 +17,6 @@ Crafty.defineScene('Navigation', (function() {
       nodeData = JSON.parse(nodeData);
     }
     
-    console.log(nodeData);
-    
     node = Crafty.e('NavNode')
       .attr({
         w: nodeData.width || defaults.width,
@@ -74,6 +72,10 @@ Crafty.defineScene('Navigation', (function() {
         x: 0,
         y: 0
       });
+      
+    if(typeof sceneNode.image !== 'undefined') {
+      background.css('background-image','url('+sceneNode.image+')');
+    }
       
     
     if(typeof navNodesData !== 'undefined') {
