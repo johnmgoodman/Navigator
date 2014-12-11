@@ -33,7 +33,7 @@ Crafty.c('StoryNode',{
   },
   
   addOption: function(optionData) {
-    this._addHTML('<button class="storynode optionbutton" onclick="Crafty.trigger(\'StoryOptionSelect\',\''+optionData.node+'\')">'+optionData.text+'</div>');
+    this._addHTML('<button class="storynode optionbutton" value="'+optionData.node+'">'+optionData.text+'</div>');
     return this;
   }
     

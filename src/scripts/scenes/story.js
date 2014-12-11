@@ -12,19 +12,18 @@ Crafty.defineScene('Story', (function() {
           h: window.innerHeight - 50
         });
     },
-    onStoryOptionSelect = function(value) {
-      console.log(nextScene);
-      Crafty('StoryNode').each(function(){this.destroy();});
-      if(value === '_storyend') {
-        Crafty.unbind('StoryOptionSelect',onStoryOptionSelect);
-        Crafty.enterScene(nextScene.name,nextScene.param);
-      } else if(currentStory.nodes.hasOwnProperty(value)) {
-        storyNodeFactory(currentStory.nodes[value]);
+    onClick = function(e) {
+      var target = e.target,
+        value = target.value;
+      if( target.className === 'storynode optionbutton' ) {
+        Crafty('StoryNode').each(function(){this.destroy();});
+        if(value === '_storyend') {
+          Crafty.enterScene(nextScene.name,nextScene.param);
+        } else if(currentStory.nodes.hasOwnProperty(value)) {
+          storyNodeFactory(currentStory.nodes[value]);
+        }
       }
     };
-    
-  
-    
   return function(param) {
     if(param.hasOwnProperty('story')) {
       currentStory = Crafty.Game.stories[param.story];
@@ -38,7 +37,14 @@ Crafty.defineScene('Story', (function() {
       nextScene.param = param.sceneRelay.param;
     }
     
-    Crafty.bind('StoryOptionSelect',onStoryOptionSelect);
+     
+    
+    Crafty.e('DOMEventDelegator')
+      .addListener(window.ontouchstart ? 'touchstart' : 'click',onClick);
+    
+    
+    
+    
     Crafty.viewport.x = 0;
     Crafty.viewport.y = 0;
     Crafty.viewport.mouselook(false);
