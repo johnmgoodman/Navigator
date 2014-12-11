@@ -13,7 +13,24 @@ Crafty.c('NavNode', {
       
     if(typeof this._target !== 'undefined') {
       goButton.action(
-        function() {Crafty.enterScene(this._target.sceneName,this._target.params);},
+        (function(self) {
+          var sceneName, sceneParam;
+          if(typeof self._story === 'undefined') {
+            sceneName = self._target.sceneName;
+            sceneParam = self._target.params;
+          } else {
+            sceneName = 'Story';
+            sceneParam = {
+              story: self._story,
+              sceneRelay: {
+                name: self._target.sceneName,
+                param: self._target.params
+              }
+            };
+          }
+          console.log(sceneParam);
+          return function() {Crafty.enterScene(sceneName,sceneParam);};
+        })(this),
         this
       );
     }
@@ -36,6 +53,10 @@ Crafty.c('NavNode', {
       params: params
     };
     return this;
+  },
+  
+  story: function(storyId) {
+    this._story = storyId;
   },
   
   key: function(navNodeKey) {

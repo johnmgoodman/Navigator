@@ -31,6 +31,10 @@ Crafty.defineScene('Navigation', (function() {
         sceneNode: nodeData._key
       });
       
+    if(nodeData.hasOwnProperty('story')) {
+      node.story(nodeData.story);
+    }
+      
     node.title(nodeData._node.title);
       
     return node;

@@ -13,7 +13,8 @@
           "niphar": {
               "x":400,
               "y": 400,
-              "image": "assets/images/galaxy_2_72x72.png"
+              "image": "assets/images/galaxy_2_72x72.png",
+              "story": "spaceworm"
             },
           "lodurim zeta": {
               "x":620,

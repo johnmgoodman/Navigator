@@ -22,7 +22,7 @@ Crafty.c('StoryNode',{
         this.addOption(options[optionIndex++]);
       }
     } else {
-      this.addOption({"text": "Continue", "node":""});
+      this.addOption({"text": "Continue", "node":"_storyend"});
     }
     return this;
   },
@@ -33,7 +33,7 @@ Crafty.c('StoryNode',{
   },
   
   addOption: function(optionData) {
-    this._addHTML('<button class="storynode optionbutton" onclick="Crafty.trigger(\'StoryOptionSubmit\',\''+optionData.node+'\')">'+optionData.text+'</div>');
+    this._addHTML('<button class="storynode optionbutton" onclick="Crafty.trigger(\'StoryOptionSelect\',\''+optionData.node+'\')">'+optionData.text+'</div>');
     return this;
   }
     

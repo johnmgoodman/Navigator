@@ -18,7 +18,7 @@
         ]
       },
       "details": {
-        "text": "Alert, you continue on your original path with elevated curiosity. You see nothing yourself, but the computer is collecting more details about the foreign object. It's radiating with low levels of infrared light, tubular in shape, and roughly twice the volume of my ship.",
+        "text": "Alert, you continue on your original path with elevated curiosity. You see nothing yourself, but the computer is collecting more details about the foreign object. It's radiating with low levels of infrared light, tubular in shape, and roughly twice the volume of your ship.",
         "options": [
           {
             "text": "Continue approaching the object",
@@ -37,7 +37,7 @@
         ]
       },
       "doubt": {
-        "text": "Caution and curiosity thrust your attention directly ahead. Still, you see nothing and transient doubts leak in from between your thoughts. The computer has misidentified objects in the past; albeit none this substantial. Perhaps something is interfering with its sensors.",
+        "text": "Caution and curiosity thrust your attention directly ahead. Still, you see nothing and transient doubts leak from between your thoughts. The computer has misidentified objects in the past; albeit none this substantial. Perhaps something is interfering with its sensors.",
         "options": [
           {
             "text": "Check readings for a possible source of interference",
