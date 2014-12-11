@@ -5,7 +5,7 @@
     
     "nodes": {
       "detected": {
-        "text": "While traveling, your sensors detect an object in the distance obstructing your trajectory. Looking ahead, you see nothing but the deep black and starry void.",
+        "text": "While traveling, your sensors detect a distant object obstructing your trajectory. Looking ahead, you see nothing but the deep black and starry void.",
         "options": [
           {
             "text": "Continue with the current trajectory unchanged",
