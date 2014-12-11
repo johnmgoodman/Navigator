@@ -3,8 +3,7 @@ Create scene transitions
   -Events/status changes
     -- Apply fuel usage to player
     
-Remove StoryNode option button onclick attribute and use a DOM event delegator for the story scene
-
+    
 Display more data in NavNode text
 
 
@@ -12,9 +11,6 @@ Make good galaxy graphics
 
 
 Create some useful/meaningful gameplay
-
-
-Implement event/story dialogs
 
 
 Implement player
