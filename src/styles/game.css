@@ -1,3 +1,39 @@
 body {
+  font-family: monaco;
   margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fff;
+}
+
+.obj.StoryNode {
+  padding: 5px;
+  color: #fff;
+  background-color: #0044aa;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.storynode.htmlcontainer {
+  text-align: center;
+}
+
+.storynode.text {
+  text-align: left;
+}
+
+.storynode.optionbutton {
+  font-family: monaco;
+  display: inline-block;
+  width: 90%;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #0044aa;
 }

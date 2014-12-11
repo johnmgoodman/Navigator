@@ -17,7 +17,8 @@
   Crafty.Game.navigationNodes = require('./gamedata/navigation.json');
   Crafty.Game.stories = require('./gamedata/story.json');
   
-  Crafty.init(window.width,window.height,window.document.getElementById('gamescreen'));    
+  Crafty.init(window.width,window.height,window.document.getElementById('gamescreen'));
+  Crafty.background('#000000');
   Crafty.load(gameAssets,function() {
     Crafty.enterScene('Navigation', {sceneNode: '_top'});
   });

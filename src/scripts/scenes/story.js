@@ -8,8 +8,8 @@ Crafty.defineScene('Story', (function() {
         .attr({
           x: 20,
           y: 20,
-          w: 300,
-          h: 300
+          w: window.innerWidth - 50,
+          h: window.innerHeight - 50
         });
     },
     onStoryOptionSelect = function(value) {
@@ -41,6 +41,9 @@ Crafty.defineScene('Story', (function() {
     Crafty.bind('StoryOptionSelect',onStoryOptionSelect);
     Crafty.viewport.x = 0;
     Crafty.viewport.y = 0;
+    Crafty.viewport.mouselook(false);
+    Crafty.viewport.clampToEntities = false;
+    Crafty.viewport.reload();
     storyNodeFactory(currentStory.nodes[currentStory.initial]);
   };
 })());
