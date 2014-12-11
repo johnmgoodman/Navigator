@@ -42,6 +42,7 @@
       "width": 900,
       "height": 600,
       "image": "assets/images/galaxy_2_900x900.png",
+      "viewport": {"x":20, "y":20},
       "children":{
           "_default": {
               "width": 72,

@@ -39,7 +39,8 @@ Crafty.defineScene('Story', (function() {
     }
     
     Crafty.bind('StoryOptionSelect',onStoryOptionSelect);
-    
+    Crafty.viewport.x = 0;
+    Crafty.viewport.y = 0;
     storyNodeFactory(currentStory.nodes[currentStory.initial]);
   };
 })());
