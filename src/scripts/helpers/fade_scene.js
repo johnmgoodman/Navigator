@@ -3,14 +3,21 @@ module.exports = function(sceneName,sceneParam,fadeConfig) {
   var fader = Crafty.e('2D, DOM, Tween, Persist')
     .attr({
       alpha: 0.0,
-      x: fadeConfig.x1 || 0,
-      y: fadeConfig.y1 || 0,
-      w: fadeConfig.w1 || Crafty.viewport.width,
-      h: fadeConfig.h1 || Crafty.viewport.height
+      x: Math.abs(Crafty.viewport.x),
+      y: Math.abs(Crafty.viewport.y),
+      w: Crafty.viewport.width,
+      h: Crafty.viewport.height
     })
     .css('background-color','white')
     .one('TweenEnd',function() {
       this.one('TweenEnd', this.destroy)
+      .attr({
+        alpha: 0.0,
+        x: Math.abs(Crafty.viewport.x),
+        y: Math.abs(Crafty.viewport.y),
+        w: Crafty.viewport.width,
+        h: Crafty.viewport.height
+      })
       .tween({alpha:0.0},500);
       Crafty.enterScene(sceneName,sceneParam);
       
