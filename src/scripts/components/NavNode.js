@@ -28,7 +28,6 @@ Crafty.c('NavNode', {
               }
             };
           }
-          console.log(sceneParam);
           return function() {Crafty.enterScene(sceneName,sceneParam);};
         })(this),
         this
