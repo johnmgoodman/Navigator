@@ -5,10 +5,10 @@
     
     "nodes": {
       "detected": {
-        "text": "While traveling, your sensors detect a distant object obstructing your trajectory. Looking ahead, you see nothing but the deep black and starry void.",
+        "text": "While traveling, your sensors detect a distant object obstructing your trajectory. You see nothing ahead but the deep, black and starry void.",
         "options": [
           {
-            "text": "Continue with the current trajectory unchanged",
+            "text": "Continue cautiously with the current trajectory unchanged",
             "node": "details"
           },
           {
@@ -31,7 +31,7 @@
         ]
       },
       "slightlyalter": {
-        "text": "You expend some energy to avoid the object. This is no place for gambling or senseless curiosity.",
+        "text": "You expend some energy to avoid the object. This is no place to gamble over senseless curiosities.",
         "effects": [
           { "effect": "energy", "value": -0.030 }
         ]
@@ -66,7 +66,7 @@
         
       },
       "unexpected": {
-        "text": "Confused, you sigh and turn from the computer to look back into the empty space ahead. Your eyes don't adjust and you blink, but suddenly you're taken aback by a terrible realization: there's a giant space worm hurtling toward your ship. You blast your engines sidewards but the creature is too close to avoid impact. Wreckage flies in all directions. Parts of your hull are left twisted and shredded in a bloody nebula of worm an steel.",
+        "text": "Confused, you sigh and turn from the computer to look back into the empty space ahead. Your eyes don't adjust and you blink, but suddenly you're taken aback by a terrible realization: there's a giant space worm hurtling toward your ship. You blast your engines sidewards but the creature is too close. Wreckage flies in all directions. Parts of your hull are left twisted and shredded in a bloody nebula of worm an steel.",
         "effects": [
           {"effect": "energy", "value": -0.200},
           {"effect": "condition", "value": -0.500}
