@@ -85,6 +85,12 @@ Crafty.defineScene('Navigation', (function() {
       createNavNodes(navNodesData);
     }
     
+    Crafty.e('SceneTransition')
+      .bind('NavNodeActivate',function(sceneData) {
+        Crafty.trigger('SceneTransition');
+        Crafty.enterScene(sceneData.scene,sceneData.param);
+      });
+    
     Crafty.viewport.clampToEntities = true;
     Crafty.viewport.x = (param.viewport || sceneNode.viewport).x;
     Crafty.viewport.y = (param.viewport || sceneNode.viewport).y;

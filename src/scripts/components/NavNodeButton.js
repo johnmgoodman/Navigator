@@ -7,6 +7,7 @@ Crafty.c('NavNodeButton', {
   init: function() {
     this.requires('2D, DOM, Mouse')
       .bind('NavNodeClick',this.destroy)
+      .bind('SceneTransition',this.destroy)
       .css({
         textAlign: 'center',
         userSelect: 'none',

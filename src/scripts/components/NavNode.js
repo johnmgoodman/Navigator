@@ -28,7 +28,9 @@ Crafty.c('NavNode', {
               }
             };
           }
-          return function() {Crafty.enterScene(sceneName,sceneParam);};
+          return function() {
+            Crafty.trigger('NavNodeActivate',{scene: sceneName, param: sceneParam});
+          };
         })(this),
         this
       );
@@ -65,7 +67,7 @@ Crafty.c('NavNode', {
   
   title: function(titleText) {
     if(typeof this._titleEntity === 'undefined') {
-      this._titleEntity = Crafty.e('NavNodeText')
+      this._titleEntity = Crafty.e('NavNodeText') // TODO: Store data and move entity creation to NavNode::_onClick
         .navNodeKey(this._key)
         .width(this.w +32)
         .addLine(titleText)
