@@ -8,8 +8,8 @@ Crafty.defineScene('Story', (function() {
         .attr({
           x: 20,
           y: 20,
-          w: window.innerWidth - 50,
-          h: window.innerHeight - 50
+          w: window.innerWidth - 40,
+          h: window.innerHeight - 40
         });
     },
     onStoryOptionSelect = function(value) {

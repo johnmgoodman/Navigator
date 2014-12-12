@@ -12,11 +12,11 @@ body {
 }
 
 .obj.StoryNode {
-  padding: 5px;
   color: #fff;
-  background-color: #0044aa;
+  background-color: #004455;
   overflow-x: hidden;
   overflow-y: auto;
+  border-radius: 7px;
 }
 
 .storynode.htmlcontainer {
@@ -25,6 +25,8 @@ body {
 
 .storynode.text {
   text-align: left;
+  font-size: 16px;
+  padding: 10px;
 }
 
 .storynode.optionbutton {
@@ -35,5 +37,6 @@ body {
   border: 1px solid #000;
   border-radius: 3px;
   background-color: #fff;
-  color: #0044aa;
+  color: #004455;
+  font-size: 14px;
 }
