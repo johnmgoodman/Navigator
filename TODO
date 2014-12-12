@@ -1,20 +1,19 @@
-Create scene transitions
-  -Visual
-  -Events/status changes
-    -- Apply fuel usage to player
-    
-    
-Display more data in NavNode text
 
 
-Make good galaxy graphics
+GLOBAL
+  Implement player (attributes/status)
+  Create scene transitions (visual and procedural)
 
+  
+SCENE: Navigation
+  Display more data in NavNode text
+  Make good galaxy graphics
+  
+  
+SCENE: Story
+  Implement story option requirements; option isnt displayed unless certain conditions are met
 
-Create some useful/meaningful gameplay
-
-
-Implement player
-  -Attributes/status
-
-
-Game saving
+  
+GENERAL IDEAS / FAR AHEAD
+  Create some useful/meaningful gameplay
+  Game saving
