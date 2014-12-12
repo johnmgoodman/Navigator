@@ -2,9 +2,17 @@ Crafty.c('StoryNode',{
   _addHTML: function(html) {
     this.append('<div class="storynode htmlcontainer">'+html+'</div>');
   },
+  
+  _onClick: function(e) {
+    var target = e.target;
+    if( target.className === 'storynode optionbutton' ) {
+      Crafty.trigger('StoryOptionSelect',target.value);
+    }
+  },
     
   init: function() {
-    this.requires('HTML');
+    this.requires('HTML, Mouse')
+      .bind('Click',this._onClick);
   },
   
   nodeData: function(storyNodeData) {

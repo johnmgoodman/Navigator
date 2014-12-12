@@ -12,17 +12,16 @@ Crafty.defineScene('Story', (function() {
           h: window.innerHeight - 50
         });
     },
-    onClick = function(e) {
-      var target = e.target,
-        value = target.value;
-      if( target.className === 'storynode optionbutton' ) {
-        Crafty('StoryNode').each(function(){this.destroy();});
-        if(value === '_storyend') {
-          Crafty.enterScene(nextScene.name,nextScene.param);
-        } else if(currentStory.nodes.hasOwnProperty(value)) {
-          storyNodeFactory(currentStory.nodes[value]);
-        }
+    onStoryOptionSelect = function(value) {
+      if(value === '_storyend') {
+        Crafty.enterScene(nextScene.name,nextScene.param);
+      } else if(currentStory.nodes.hasOwnProperty(value)) {
+        storyNodeFactory(currentStory.nodes[value]);
       }
+    },
+    onSceneDestroy = function() {
+      Crafty.unbind('SceneDestroy',onSceneDestroy);
+      Crafty.unbind('StoryOptionSelected',onStoryOptionSelect);
     };
   return function(param) {
     if(param.hasOwnProperty('story')) {
@@ -37,13 +36,8 @@ Crafty.defineScene('Story', (function() {
       nextScene.param = param.sceneRelay.param;
     }
     
-     
-    
-    Crafty.e('DOMEventDelegator')
-      .addListener(window.ontouchstart ? 'touchstart' : 'click',onClick);
-    
-    
-    
+    Crafty.bind('SceneDestroy',onSceneDestroy);
+    Crafty.bind('StoryOptionSelect',onStoryOptionSelect);
     
     Crafty.viewport.x = 0;
     Crafty.viewport.y = 0;
