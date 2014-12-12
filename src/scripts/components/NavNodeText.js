@@ -30,7 +30,7 @@ Crafty.c('NavNodeText', {
       })
       .textColor('#ffffff')
       .textFont({size:'10px',family:'monaco'})
-      .bind('SceneTransitionOut',this.destroy)
+      .bind('NavNodeActivate',this.destroy)
       .attr({
         w: 0,
         h: 0
