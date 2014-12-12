@@ -85,11 +85,29 @@ Crafty.defineScene('Navigation', (function() {
       createNavNodes(navNodesData);
     }
     
+    
     Crafty.e('SceneTransition')
-      .bind('NavNodeActivate',function(sceneData) {
-        Crafty.trigger('SceneTransition');
-        Crafty.enterScene(sceneData.scene,sceneData.param);
+      .registerOut('NavNodeActivate')
+      .addOutProcedure(function(sceneData) {
+        Crafty.e('2D, DOM, Tween, Persist')
+          .attr({
+            alpha: 0.0,
+            x: 0,
+            y: 0,
+            w: sceneNode.width,
+            h: sceneNode.height
+          })
+          .css('background-color','black')
+          .one('TweenEnd',function() {
+            Crafty.trigger('TransitionProcedureResponse',sceneData);
+            this.one('TweenEnd', this.destroy)
+            .tween({alpha:0.0},500);
+            
+          })
+          .tween({alpha:1.0},500)
+          .z = 1000;
       });
+    
     
     Crafty.viewport.clampToEntities = true;
     Crafty.viewport.x = (param.viewport || sceneNode.viewport).x;

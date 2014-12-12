@@ -29,7 +29,7 @@ Crafty.c('NavNode', {
             };
           }
           return function() {
-            Crafty.trigger('NavNodeActivate',{scene: sceneName, param: sceneParam});
+            Crafty.trigger('NavNodeActivate',{name: sceneName, param: sceneParam});
           };
         })(this),
         this

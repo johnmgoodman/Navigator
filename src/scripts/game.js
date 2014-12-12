@@ -2,7 +2,7 @@
     
   var gameAssets = require('./assets.json');
   
-  require('./components/DOMEventDelegator.js');
+  require('./components/SceneTransition.js');
   require('./components/Player.js');
   require('./components/Outerspace.js');
   require('./components/NavNode.js');
