@@ -12,7 +12,6 @@ module.exports = function(sceneName,sceneParam,fadeConfig) {
     .one('TweenEnd',function() {
       this.one('TweenEnd', this.destroy)
       .attr({
-        alpha: 0.0,
         x: Math.abs(Crafty.viewport.x),
         y: Math.abs(Crafty.viewport.y),
         w: Crafty.viewport.width,
