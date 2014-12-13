@@ -1,5 +1,4 @@
 module.exports = function(sceneName,sceneParam,duration,color) {
-  fadeConfig = fadeConfig || {};
   var fader = Crafty.e('2D, DOM, Tween')
     .attr({
       alpha: 0.0,
@@ -12,6 +11,6 @@ module.exports = function(sceneName,sceneParam,duration,color) {
     .one('TweenEnd',function() {
       Crafty.enterScene(sceneName,sceneParam);
     })
-    .tween({alpha:1.0},duration||500);
+    .tween({alpha:1.0},duration||250);
   fader.z = 1000;
 };
