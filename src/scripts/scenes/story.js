@@ -4,17 +4,17 @@ Crafty.defineScene('Story', (function() {
     nextScene = {},
     storyNodeFactory = function(storyData) {
       Crafty.e('StoryNode')
-        .nodeData(storyData)
         .attr({
           x: 20,
           y: 20,
           w: window.innerWidth - 40,
           h: window.innerHeight - 40
-        });
+        })
+        .nodeData(storyData);
     },
     onStoryOptionSelect = function(value) {
       if(value === '_storyend') {
-        Crafty.enterScene(nextScene.name,nextScene.param);
+        Crafty.Game.helpers.scene_fadeout(nextScene.name,nextScene.param);
       } else if(currentStory.nodes.hasOwnProperty(value)) {
         storyNodeFactory(currentStory.nodes[value]);
       }
