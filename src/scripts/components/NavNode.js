@@ -14,23 +14,8 @@ Crafty.c('NavNode', {
     if(typeof this._target !== 'undefined') {
       goButton.action(
         (function(self) {
-          var sceneName, sceneParam;
-          if(typeof self._story === 'undefined') {
-            sceneName = self._target.sceneName;
-            sceneParam = self._target.params;
-          } else {
-            sceneName = 'Story';
-            sceneParam = {
-              story: self._story,
-              sceneRelay: {
-                name: self._target.sceneName,
-                param: self._target.params
-              }
-            };
-          }
           return function() {
-            Crafty.trigger('NavNodeActivate');
-            Crafty.Game.helpers.scene_fadeout(sceneName, sceneParam);
+            Crafty.trigger('NavNodeActivate',self);
           };
         })(this),
         this

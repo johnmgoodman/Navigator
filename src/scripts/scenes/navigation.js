@@ -85,6 +85,23 @@ Crafty.defineScene('Navigation', (function() {
     }
     
     if(typeof navNodesData !== 'undefined') {
+      Crafty.one('NavNodeActivate',function(node) {
+        var sceneName, sceneParam;
+        if(typeof node._story === 'undefined') {
+          sceneName = node._target.sceneName;
+          sceneParam = node._target.params;
+        } else {
+          sceneName = 'Story';
+          sceneParam = {
+            story: node._story,
+            sceneRelay: {
+              name: node._target.sceneName,
+              param: node._target.params
+            }
+          };
+        }
+        Crafty.Game.helpers.scene_fadeout(sceneName,sceneParam);
+      });
       createNavNodes(navNodesData);
     }
     
@@ -92,5 +109,6 @@ Crafty.defineScene('Navigation', (function() {
     Crafty.viewport.x = (param.viewport || sceneNode.viewport).x;
     Crafty.viewport.y = (param.viewport || sceneNode.viewport).y;
     Crafty.viewport.mouselook(true);
+
   };
 })());
