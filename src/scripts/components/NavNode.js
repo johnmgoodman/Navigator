@@ -39,7 +39,7 @@ Crafty.c('NavNode', {
   
   _createText: function() {
     if(typeof this._titleEntity === 'undefined') {
-      this._titleEntity = Crafty.e('NavNodeText') // TODO: Store data and move entity creation to NavNode::_onClick
+      this._titleEntity = Crafty.e('NavNodeText')
         .navNodeKey(this._key)
         .width(this.w +32)
         .attr({
@@ -47,10 +47,10 @@ Crafty.c('NavNode', {
           y: this.y + this.h - 8
         });
       if(this.hasOwnProperty('_title')) {
-        this._titleEntity.addLine(this._title);
+        this._titleEntity.addLine('<span class="nodeinfo title">'+this._title+'</span>');
       }
       if(this.hasOwnProperty('_distance')) {
-        this._titleEntity.addLine("dist: "+this._distance+"Mly");
+        this._titleEntity.addLine("<span class=\"nodeinfo distance\">dist "+this._distance+"Mly</span>");
       }
       this._titleEntity.display();
     }
@@ -77,19 +77,24 @@ Crafty.c('NavNode', {
   },
   
   story: function(storyId) {
+    if(typeof storyId === 'undefined') return this._story;
     this._story = storyId;
   },
   
   key: function(navNodeKey) {
+    if(typeof navNodeKey === 'undefined') return this._key;
     this._key = navNodeKey;
     return this;
   },
   
   distance: function(dist) {
+    if(typeof dist === 'undefined') return this._distance;
     this._distance = dist;
+    return this;
   },
   
   title: function(titleText) {
+    if(typeof titleText === 'undefined') return this._title;
     this._title = titleText;
     return this;
   }
