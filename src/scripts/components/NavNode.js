@@ -42,11 +42,17 @@ Crafty.c('NavNode', {
       this._titleEntity = Crafty.e('NavNodeText') // TODO: Store data and move entity creation to NavNode::_onClick
         .navNodeKey(this._key)
         .width(this.w +32)
-        .addLine(titleText)
         .attr({
           x: this.x,
           y: this.y + this.h - 8
         });
+      if(this.hasOwnProperty('_title')) {
+        this._titleEntity.addLine(this._title);
+      }
+      if(this.hasOwnProperty('_distance')) {
+        this._titleEntity.addLine("dist: "+this._distance+"Mly");
+      }
+      this._titleEntity.display();
     }
   },
   

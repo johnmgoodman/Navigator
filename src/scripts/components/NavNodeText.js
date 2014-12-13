@@ -1,29 +1,17 @@
 Crafty.c('NavNodeText', {
     
-  _onEnterFrame: function() {
-    if(this.w < this._width) {
-      this.w += 5;
-    } else {
-      this.w = this._width;
-      this.unbind('EnterFrame',this._onEnterFrame);
-    }
-  },
-    
   _onNavNodeClick: function(navNodeKey) {
     if(navNodeKey === this._navNodeKey) {
-      this.w = 0;
-      this.visible = true;
-      this.bind('EnterFrame',this._onEnterFrame);
+      this.display();
     } else {
       if(this.visible) {
         this.visible = false;
-        this.unbind('EnterFrame',this._onEnterFrame);
       }
     }
   },
   
   init: function() {
-    this.requires('2D, DOM, Text')
+    this.requires('2D, DOM, Text, Tween')
       .css({
         overflow: 'hidden',
         whiteSpace: 'nowrap'
@@ -39,6 +27,12 @@ Crafty.c('NavNodeText', {
     this._textLines = [];
   },
   
+  display: function() {
+    this.w = 0;
+    this.visible = true;
+    this.tween({w:this._width},250);
+  },
+  
   width: function(width) {
     this._width = width;
     return this;
@@ -52,7 +46,7 @@ Crafty.c('NavNodeText', {
   
   addLine: function(lineText) {
     this._textLines.push(lineText);
-    this.h += 12;
+    this.h += 16;
     this.text(this._textLines.join('<br />'));
     return this;
   }

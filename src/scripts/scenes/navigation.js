@@ -13,7 +13,6 @@ Crafty.defineScene('Navigation', (function() {
    
   var navNodeFactory = function(nodeData,defaults) {
     var node;
-    
     if(typeof nodeData === 'string') {
       nodeData = JSON.parse(nodeData);
     }
@@ -36,7 +35,7 @@ Crafty.defineScene('Navigation', (function() {
     }
       
     if(nodeData.hasOwnProperty('distance')) {
-      node.story(nodeData.distance);
+      node.distance(nodeData.distance);
     }
       
     node.title(nodeData._node.title);

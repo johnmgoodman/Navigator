@@ -8,8 +8,7 @@
           "_default": {
               "width":72,
               "height": 72,
-              "image": "assets/images/galaxy_1_72x72.png",
-              "distance": 2.890
+              "image": "assets/images/galaxy_1_72x72.png"
             },
           "niphar": {
               "x":400,
@@ -20,7 +19,8 @@
             },
           "lodurim zeta": {
               "x":620,
-              "y": 480
+              "y": 480,
+              "distance": 2.890
             },
           "ozumiti": {
               "x": 420,
