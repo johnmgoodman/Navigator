@@ -37,8 +37,22 @@ Crafty.c('NavNode', {
     }
   },
   
+  _createText: function() {
+    if(typeof this._titleEntity === 'undefined') {
+      this._titleEntity = Crafty.e('NavNodeText') // TODO: Store data and move entity creation to NavNode::_onClick
+        .navNodeKey(this._key)
+        .width(this.w +32)
+        .addLine(titleText)
+        .attr({
+          x: this.x,
+          y: this.y + this.h - 8
+        });
+    }
+  },
+  
   _onClick: function(e) {
     Crafty.trigger('NavNodeClick',this._key);
+    this._createText();
     this._createButton();
   },
     
@@ -65,17 +79,12 @@ Crafty.c('NavNode', {
     return this;
   },
   
+  distance: function(dist) {
+    this._distance = dist;
+  },
+  
   title: function(titleText) {
-    if(typeof this._titleEntity === 'undefined') {
-      this._titleEntity = Crafty.e('NavNodeText') // TODO: Store data and move entity creation to NavNode::_onClick
-        .navNodeKey(this._key)
-        .width(this.w +32)
-        .addLine(titleText)
-        .attr({
-          x: this.x,
-          y: this.y + this.h - 8
-        });
-    }
+    this._title = titleText;
     return this;
   }
   

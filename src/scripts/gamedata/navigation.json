@@ -8,13 +8,15 @@
           "_default": {
               "width":72,
               "height": 72,
-              "image": "assets/images/galaxy_1_72x72.png"
+              "image": "assets/images/galaxy_1_72x72.png",
+              "distance": 2.890
             },
           "niphar": {
               "x":400,
               "y": 400,
               "image": "assets/images/galaxy_2_72x72.png",
-              "story": "spaceworm"
+              "story": "spaceworm",
+              "distance": 1.091
             },
           "lodurim zeta": {
               "x":620,

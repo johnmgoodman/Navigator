@@ -35,6 +35,10 @@ Crafty.defineScene('Navigation', (function() {
       node.story(nodeData.story);
     }
       
+    if(nodeData.hasOwnProperty('distance')) {
+      node.story(nodeData.distance);
+    }
+      
     node.title(nodeData._node.title);
       
     return node;
