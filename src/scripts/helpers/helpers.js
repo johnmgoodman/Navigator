@@ -1,3 +1,3 @@
 module.exports = {
-  fade_scene: require('./fade_scene.js')
+  scene_fadeout: require('./scene_fadeout.js')
 };

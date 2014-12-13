@@ -29,7 +29,7 @@ Crafty.c('NavNode', {
             };
           }
           return function() {
-            Crafty.Game.helpers.fade_scene(sceneName, sceneParam);
+            Crafty.Game.helpers.scene_fadeout(sceneName, sceneParam);
           };
         })(this),
         this
