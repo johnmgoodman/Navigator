@@ -18,6 +18,11 @@
   Crafty.Game.navigationNodes = require('./gamedata/navigation.json');
   Crafty.Game.stories = require('./gamedata/story.json');
   Crafty.Game.helpers = require('./helpers/helpers.js');
+
+  Crafty.sprite(32,"assets/images/ui.png",{
+    UIBackDisabled:[0,0],
+    UIBackEnabled:[1,0]
+  });
   
   Crafty.init(window.width,window.height,window.document.getElementById('gamescreen'));
   Crafty.background('#000000');

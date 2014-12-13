@@ -66,7 +66,28 @@ Crafty.defineScene('Navigation', (function() {
     }
     
     return nodes;
+  },
+
+
+  buildUI = function(prev) {
+    var backBtn = Crafty.e('2D, DOM')
+      .attr({w:32, h: 32})
+      .bind('ViewportScroll', function() {
+        this.x = Math.abs(Crafty.viewport.x) + 20;
+        this.y = Math.abs(Crafty.viewport.y) + Crafty.viewport.height - 20 - 32;
+      });
+
+    if(typeof prev === 'undefined') {
+      backBtn.addComponent('UIBackDisabled');
+    } else {
+      backBtn.addComponent('UIBackEnabled')
+        .bind('Click',function() {
+          Crafty.Game.helpers.scene_fadeout('Navigation',sceneParam);
+        });
+    }
   };
+
+
   
   return function(param) {
     
@@ -105,6 +126,8 @@ Crafty.defineScene('Navigation', (function() {
       createNavNodes(navNodesData);
     }
     
+    buildUI();
+
     Crafty.viewport.clampToEntities = true;
     Crafty.viewport.x = (param.viewport || sceneNode.viewport).x;
     Crafty.viewport.y = (param.viewport || sceneNode.viewport).y;
