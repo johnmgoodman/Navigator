@@ -1,0 +1,16 @@
+@import "navigation";
+@import "story";
+
+
+body {
+  font-family: monaco;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fff;
+}

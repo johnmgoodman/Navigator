@@ -3,6 +3,7 @@
 GLOBAL
   Implement player (attributes/status)
   Create scene transitions (visual and procedural)
+  Regulate z-indexes
 
   
 SCENE: Navigation

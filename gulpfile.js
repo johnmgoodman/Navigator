@@ -75,8 +75,16 @@ gulp.task('images',function() {
     .pipe(gulp.dest(path.buildImages));
 });
 
+gulp.task('gamestyle',function() {
+  var sass = require('gulp-sass');
+  return gulp.src(path.srcStyles + 'game.scss')
+    .pipe(sass())
+    .pipe(gulp.dest(path.buildStyles));
+});
+
 gulp.task('copy',['jslib','images']);
-gulp.task('styles',['scss','css']);
+//gulp.task('styles',['scss','css']);
+gulp.task('styles',['gamestyle']);
 gulp.task('default',['lint','copy','jade','styles','game']);
 
 

@@ -1,6 +1,8 @@
 Crafty.defineScene('Navigation', (function() {
     
-    
+  var dbg = 0,
+
+
   /**
    *  Creates a NavNode entity based on the supplied
    *  data.
@@ -10,10 +12,9 @@ Crafty.defineScene('Navigation', (function() {
    *  @param {Object} defaults - Object to use for data that the nodeData object doesn't have.
    *  @return {NavNode} The new NavNode
    */
-   
-  var navNodeFactory = function(nodeData,defaults) {
+
+  navNodeFactory = function(nodeData,defaults) {
     var node;
-    
     if(typeof nodeData === 'string') {
       nodeData = JSON.parse(nodeData);
     }
@@ -33,6 +34,10 @@ Crafty.defineScene('Navigation', (function() {
       
     if(nodeData.hasOwnProperty('story')) {
       node.story(nodeData.story);
+    }
+      
+    if(nodeData.hasOwnProperty('distance')) {
+      node.distance(nodeData.distance);
     }
       
     node.title(nodeData._node.title);
@@ -63,7 +68,49 @@ Crafty.defineScene('Navigation', (function() {
     }
     
     return nodes;
+  },
+
+
+  buildUI = function(param) {
+    var backBtn = Crafty.e('2D, DOM')
+      .attr({w:32, h: 32})
+      .bind('ViewportScroll', function() {
+        this.x = Math.abs(Crafty.viewport.x) + 20;
+        this.y = Math.abs(Crafty.viewport.y) + Crafty.viewport.height - 20 - 32;
+      });
+
+    if(Crafty('NavHistory').get(0).history().length === 0) {
+      backBtn.addComponent('UIBackDisabled');
+    } else {
+      backBtn.addComponent('UIBackEnabled, Mouse')
+        .bind('Click',function() {
+          Crafty.trigger('NavBack');
+        });
+    }
+  },
+
+
+
+  onNavNodeActivate = function(node) {
+    var sceneName, sceneParam, num = 0;
+    if(typeof node._story === 'undefined') {
+      sceneName = node._target.sceneName;
+      sceneParam = node._target.param;
+    } else {
+      sceneName = 'Story';
+      sceneParam = {
+        story: node._story,
+        sceneRelay: {
+          name: node._target.sceneName,
+          param: node._target.param
+        }
+      };
+    }
+    console.log(Date.now());
+    Crafty.Game.helpers.scene_fadeout(sceneName,sceneParam);
   };
+
+
   
   return function(param) {
     
@@ -76,18 +123,30 @@ Crafty.defineScene('Navigation', (function() {
         x: 0,
         y: 0
       });
+
       
     if(typeof sceneNode.image !== 'undefined') {
       background.css('background-image','url('+sceneNode.image+')');
     }
     
     if(typeof navNodesData !== 'undefined') {
+      Crafty.bind('NavNodeActivate', onNavNodeActivate);
       createNavNodes(navNodesData);
     }
+
+    Crafty.e('NavHistory')
+      .loadParam(param);
     
+    buildUI(param);
+
     Crafty.viewport.clampToEntities = true;
     Crafty.viewport.x = (param.viewport || sceneNode.viewport).x;
     Crafty.viewport.y = (param.viewport || sceneNode.viewport).y;
     Crafty.viewport.mouselook(true);
+
+    Crafty.one('SceneDestroy',function(nextScene) {
+      Crafty.unbind('NavNodeActivate', onNavNodeActivate);
+    });
+
   };
 })());
