@@ -44,18 +44,7 @@
       "width": 900,
       "height": 600,
       "image": "assets/images/galaxy_2_900x900.png",
-      "viewport": {"x":-20, "y":-20},
-      "children":{
-          "_default": {
-              "width": 72,
-              "height": 72,
-              "image": "assets/images/galaxy_1_72x72.png"
-            },
-          "_top": {
-              "x": 100,
-              "y": 100
-            }
-        }
+      "viewport": {"x":-20, "y":-20}
     },
   "lodurim zeta": {
       "title": "Lodurim Zeta",
