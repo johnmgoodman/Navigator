@@ -44,7 +44,7 @@
       "width": 900,
       "height": 600,
       "image": "assets/images/galaxy_2_900x900.png",
-      "viewport": {"x":20, "y":20},
+      "viewport": {"x":-20, "y":-20},
       "children":{
           "_default": {
               "width": 72,
@@ -58,15 +58,19 @@
         }
     },
   "lodurim zeta": {
-      "title": "Lodurim Zeta"
+      "title": "Lodurim Zeta",
+      "viewport": {"x": 0, "y": 0}
     },
   "ozumiti": {
-      "title": "Ozumiti"
+      "title": "Ozumiti",
+      "viewport": {"x": 0, "y": 0}
     },
   "irda vo": {
-      "title": "Irda Vo"
+      "title": "Irda Vo",
+      "viewport": {"x": 0, "y": 0}
     },
   "moth mita": {
-      "title": "Moth Mita"
+      "title": "Moth Mita",
+      "viewport": {"x": 0, "y": 0}
     }
 }
