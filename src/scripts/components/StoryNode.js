@@ -22,7 +22,9 @@ Crafty.c('StoryNode',{
     this.addText(storyNodeData.text);
     
     
-    //TODO: apply effects
+    if(storyNodeData.hasOwnProperty('effects')) {
+      Crafty.trigger('PlayerEffects',storyNodeData.effects);
+    }
       
     if(typeof options !== 'undefined') {
       noptions = options.length;

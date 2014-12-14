@@ -1,5 +1,10 @@
 Crafty.c('Player', { // The player and the ship are one.
   
+
+  _onPlayerEffects: function(effects) {
+    console.log(effects);
+  },
+
   init: function() {
     
     this.requires('Persist');
@@ -10,6 +15,9 @@ Crafty.c('Player', { // The player and the ship are one.
     
     this._attributes = {};  // { "attr1Name": 57,
     this._modifiers = {};   //
+
+    this.bind('PlayerEffects', this._onPlayerEffects);
+
   },
   
   apply: function(conf) {
