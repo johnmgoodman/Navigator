@@ -18,7 +18,8 @@
             },
           "lodurim zeta": {
               "x":620,
-              "y": 480
+              "y": 480,
+              "story": "height test"
             },
           "ozumiti": {
               "x": 420,
