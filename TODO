@@ -13,6 +13,7 @@ SCENE: Navigation
   
 SCENE: Story
   Implement story option requirements; option isnt displayed unless certain conditions are met
+  !! Need to fix scrolling bug (mobile not scrolling)
 
   
 GENERAL IDEAS / FAR AHEAD
