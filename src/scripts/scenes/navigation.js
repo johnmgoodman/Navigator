@@ -69,7 +69,7 @@ Crafty.defineScene('Navigation', (function() {
   },
 
 
-  buildUI = function(prev) {
+  buildUI = function(param) {
     var backBtn = Crafty.e('2D, DOM')
       .attr({w:32, h: 32})
       .bind('ViewportScroll', function() {
@@ -77,12 +77,12 @@ Crafty.defineScene('Navigation', (function() {
         this.y = Math.abs(Crafty.viewport.y) + Crafty.viewport.height - 20 - 32;
       });
 
-    if(typeof prev === 'undefined') {
+    if(Crafty.Game.Player.navHistory.length === 0) {
       backBtn.addComponent('UIBackDisabled');
     } else {
-      backBtn.addComponent('UIBackEnabled')
+      backBtn.addComponent('UIBackEnabled, Mouse')
         .bind('Click',function() {
-          Crafty.Game.helpers.scene_fadeout('Navigation',sceneParam);
+          Crafty.Game.helpers.scene_fadeout('Navigation',Crafty.Game.Player.navHistory.pop());
         });
     }
   };
@@ -100,6 +100,12 @@ Crafty.defineScene('Navigation', (function() {
         x: 0,
         y: 0
       });
+
+    console.log(Crafty.Game.Player.navHistory);
+
+    if(typeof Crafty.Game.Player.navHistory  === 'undefined') {
+      Crafty.Game.Player.navHistory = [];
+    }
       
     if(typeof sceneNode.image !== 'undefined') {
       background.css('background-image','url('+sceneNode.image+')');
@@ -121,12 +127,13 @@ Crafty.defineScene('Navigation', (function() {
             }
           };
         }
+        Crafty.Game.Player.navHistory.push(param);
         Crafty.Game.helpers.scene_fadeout(sceneName,sceneParam);
       });
       createNavNodes(navNodesData);
     }
     
-    buildUI();
+    buildUI(param);
 
     Crafty.viewport.clampToEntities = true;
     Crafty.viewport.x = (param.viewport || sceneNode.viewport).x;
