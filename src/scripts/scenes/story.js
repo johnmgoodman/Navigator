@@ -21,7 +21,7 @@ Crafty.defineScene('Story', (function() {
     },
     onSceneDestroy = function() {
       Crafty.unbind('SceneDestroy',onSceneDestroy);
-      Crafty.unbind('StoryOptionSelected',onStoryOptionSelect);
+      Crafty.unbind('StoryOptionSelect',onStoryOptionSelect);
     };
   return function(param) {
     if(param.hasOwnProperty('story')) {
