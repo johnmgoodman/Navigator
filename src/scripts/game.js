@@ -8,6 +8,7 @@
   require('./components/NavNode.js');
   require('./components/NavNodeText.js');
   require('./components/NavNodeButton.js');
+  require('./components/NavHistory.js');
   require('./components/ParallaxLayer.js');
   require('./components/StoryNode.js');
   

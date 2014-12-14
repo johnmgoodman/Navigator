@@ -1,6 +1,8 @@
 Crafty.defineScene('Navigation', (function() {
     
-    
+  var dbg = 0,
+
+
   /**
    *  Creates a NavNode entity based on the supplied
    *  data.
@@ -10,8 +12,8 @@ Crafty.defineScene('Navigation', (function() {
    *  @param {Object} defaults - Object to use for data that the nodeData object doesn't have.
    *  @return {NavNode} The new NavNode
    */
-   
-  var navNodeFactory = function(nodeData,defaults) {
+
+  navNodeFactory = function(nodeData,defaults) {
     var node;
     if(typeof nodeData === 'string') {
       nodeData = JSON.parse(nodeData);
@@ -77,14 +79,35 @@ Crafty.defineScene('Navigation', (function() {
         this.y = Math.abs(Crafty.viewport.y) + Crafty.viewport.height - 20 - 32;
       });
 
-    if(Crafty.Game.Player.navHistory.length === 0) {
+    if(Crafty('NavHistory').get(0).history().length === 0) {
       backBtn.addComponent('UIBackDisabled');
     } else {
       backBtn.addComponent('UIBackEnabled, Mouse')
         .bind('Click',function() {
-          Crafty.Game.helpers.scene_fadeout('Navigation',Crafty.Game.Player.navHistory.pop());
+          Crafty.trigger('NavBack');
         });
     }
+  },
+
+
+
+  onNavNodeActivate = function(node) {
+    var sceneName, sceneParam, num = 0;
+    if(typeof node._story === 'undefined') {
+      sceneName = node._target.sceneName;
+      sceneParam = node._target.param;
+    } else {
+      sceneName = 'Story';
+      sceneParam = {
+        story: node._story,
+        sceneRelay: {
+          name: node._target.sceneName,
+          param: node._target.param
+        }
+      };
+    }
+    console.log(Date.now());
+    Crafty.Game.helpers.scene_fadeout(sceneName,sceneParam);
   };
 
 
@@ -101,37 +124,18 @@ Crafty.defineScene('Navigation', (function() {
         y: 0
       });
 
-    console.log(Crafty.Game.Player.navHistory);
-
-    if(typeof Crafty.Game.Player.navHistory  === 'undefined') {
-      Crafty.Game.Player.navHistory = [];
-    }
       
     if(typeof sceneNode.image !== 'undefined') {
       background.css('background-image','url('+sceneNode.image+')');
     }
     
     if(typeof navNodesData !== 'undefined') {
-      Crafty.one('NavNodeActivate',function(node) {
-        var sceneName, sceneParam;
-        if(typeof node._story === 'undefined') {
-          sceneName = node._target.sceneName;
-          sceneParam = node._target.params;
-        } else {
-          sceneName = 'Story';
-          sceneParam = {
-            story: node._story,
-            sceneRelay: {
-              name: node._target.sceneName,
-              param: node._target.params
-            }
-          };
-        }
-        Crafty.Game.Player.navHistory.push(param);
-        Crafty.Game.helpers.scene_fadeout(sceneName,sceneParam);
-      });
+      Crafty.bind('NavNodeActivate', onNavNodeActivate);
       createNavNodes(navNodesData);
     }
+
+    Crafty.e('NavHistory')
+      .loadParam(param);
     
     buildUI(param);
 
@@ -139,6 +143,10 @@ Crafty.defineScene('Navigation', (function() {
     Crafty.viewport.x = (param.viewport || sceneNode.viewport).x;
     Crafty.viewport.y = (param.viewport || sceneNode.viewport).y;
     Crafty.viewport.mouselook(true);
+
+    Crafty.one('SceneDestroy',function(nextScene) {
+      Crafty.unbind('NavNodeActivate', onNavNodeActivate);
+    });
 
   };
 })());

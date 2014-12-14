@@ -54,10 +54,10 @@ Crafty.c('NavNode', {
       .bind('Click',this._onClick);
   },
   
-  target: function(sceneName,params) {
+  target: function(sceneName,param) {
     this._target = {
       sceneName: sceneName,
-      params: params
+      param: param
     };
     return this;
   },
