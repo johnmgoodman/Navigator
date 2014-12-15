@@ -1,8 +1,17 @@
 Crafty.c('Player', { // The player and the ship are one.
   
+  _onEnergyEffect: function(value) {
+    if(this._expend(this._spacecraft.fuel.name, value - this._spacecraft.fuel.efficiency * value) < 0) {
+      //player dies
+    }
+  },
 
   _onPlayerEffects: function(effects) {
-    console.log(effects);
+    
+  },
+  
+  _expend: function(name,amount) {
+    
   },
 
   init: function() {
@@ -11,27 +20,19 @@ Crafty.c('Player', { // The player and the ship are one.
     
     
     this._inventory = {};   // Storage
-    this._resources = {};   // Active support (fuel, oxygen, water, etc)
-    
-    this._attributes = {};  // { "attr1Name": 57,
     this._modifiers = {};   //
 
     this.bind('PlayerEffects', this._onPlayerEffects);
 
   },
   
-  apply: function(conf) {
-    var procName, procItems, procItemName;
-    for(procName in conf) {
-      if(conf.hasOwnProperty(procName)) {
-        procItems = conf[procName];
-        for(procItemName in procItems) {
-          if(procItems.hasOwnProperty(procItemName)) {
-            this['_'+procName][procItemName] = this['_'+procName][procItemName] || 0 + procItems[procItemName];
-          }
-        }
-      }
-    }
+  lifeform: function(lifeformData) {
+    this._lifeform = lifeformData;
+    return this;
+  },
+  
+  spacecraft: function(spacecraftData) {
+    this._spacecraft = spacecraftData;
     return this;
   }
 

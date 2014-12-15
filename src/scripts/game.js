@@ -28,13 +28,9 @@
   Crafty.init(window.width,window.height,window.document.getElementById('gamescreen'));
   Crafty.background('#000000');
   Crafty.load(gameAssets,function() {
-    Crafty.Game.Player = Crafty.e('Player').apply({
-      attributes: {
-        intellect: 5,
-        luck:3,
-        speech: 3
-      }
-    });
+    Crafty.Game.Player = Crafty.e('Player')
+      .lifeform(require('./gamedata/lifeform_human.json'))
+      .spacecraft(require('./gamedata/spacecraft_human.json'));
     Crafty.enterScene('Navigation', {sceneNode: '_top'});
   });
 })(Crafty);

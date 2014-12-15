@@ -1,0 +1,10 @@
+{
+  "resources": [
+    "water", "oxygen"
+  ],
+  "attributes": {
+    "intellect": 2,
+    "luck":3,
+    "speech": 3
+  }
+}
