@@ -9,9 +9,10 @@ Crafty.c('StoryNode',{
       Crafty.trigger('StoryOptionSelect',target.value);
     }
   },
+  
     
   init: function() {
-    this.requires('HTML, Mouse')
+    this.requires('2D, DOM, HTML, Mouse')
       .bind('Click',this._onClick);
   },
   
