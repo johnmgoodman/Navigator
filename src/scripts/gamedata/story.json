@@ -69,7 +69,7 @@
         "text": "Confused, you sigh and turn from the computer to look back into the empty space ahead. Your eyes don't adjust and you blink, but suddenly you're taken aback by a terrible realization: there's a giant space worm hurtling toward your ship. You blast your engines sidewards but the creature is too close. Wreckage flies in all directions. Parts of your hull are left twisted and shredded in a bloody nebula of worm an steel.",
         "effects": [
           {"effect": "energy", "value": -0.200},
-          {"effect": "condition", "value": -0.500}
+          {"effect": "condition", "value": -600}
         ]
       }
     }

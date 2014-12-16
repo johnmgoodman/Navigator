@@ -1,6 +1,8 @@
 {
-  "resources": [
-    "water", "oxygen"
+  "nourishment": [
+    {"name": "water", "proportion": 0.350},
+    {"name": "oxygen", "proportion": 0.450},
+    {"name": "food", "proportion": 0.200}
   ],
   "attributes": {
     "intellect": 2,

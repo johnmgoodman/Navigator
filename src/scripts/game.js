@@ -18,6 +18,8 @@
   Crafty.Game = {};
   Crafty.Game.navigationNodes = require('./gamedata/navigation.json');
   Crafty.Game.stories = require('./gamedata/story.json');
+  Crafty.Game.lifeforms = require('./gamedata/lifeforms.json');
+  Crafty.Game.spacecrafts = require('./gamedata/spacecrafts.json');
   Crafty.Game.helpers = require('./helpers/helpers.js');
 
   Crafty.sprite(32,"assets/images/ui.png",{
@@ -29,8 +31,8 @@
   Crafty.background('#000000');
   Crafty.load(gameAssets,function() {
     Crafty.Game.Player = Crafty.e('Player')
-      .lifeform(require('./gamedata/lifeform_human.json'))
-      .spacecraft(require('./gamedata/spacecraft_human.json'));
+      .lifeform("human")
+      .spacecraft("blue origin");
     Crafty.enterScene('Navigation', {sceneNode: '_top'});
   });
 })(Crafty);

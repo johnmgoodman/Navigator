@@ -1,7 +1,7 @@
 {
   "fuel": { "name":"hydrogen", "efficiency": 0.500 },
   "hull": [
-    { "name": "body", "condition": 1.000, "resistance": 0.081 },
-    { "name": "shields", "condition": 1.000, "resistance": 0.75 }
+    { "name": "body", "condition": 700, "max condition": 700},
+    { "name": "shields", "condition": 400, "max condition": 400}
   ]
 }
