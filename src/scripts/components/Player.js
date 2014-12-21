@@ -2,7 +2,7 @@ Crafty.c('Player', { // The player and the ship are one.
   
   _applyToInventory: function(name,amount) {
     var prevQty = this._inventory[name] || 0,
-      qty = prevQty + amount;
+      qty = prevQty + (amount||0);
     this._inventory[name] = qty;
     console.log(this._inventory);
     Crafty.trigger('PlayerInventoryChanged',{
@@ -38,6 +38,7 @@ Crafty.c('Player', { // The player and the ship are one.
       currentH, prevCond,
       currentCond;
     while(value !== 0) {
+      console.log('fdsfdf');
       if(hullIndex === 0) {
         Crafty.trigger('PlayerDeath', {cause: "Your ship has been destroyed"});
         break;
@@ -113,6 +114,28 @@ Crafty.c('Player', { // The player and the ship are one.
   inventory: function(inventoryData) {
     this._inventory = inventoryData;
     return this;
+  },
+
+  status: function() {
+    var self = this;
+    return {
+      fuel: {
+          name: this._spacecraft.fuel.name,
+          quantity: this._inventory[this._spacecraft.fuel.name] || 0
+        },
+      nourishment: this._lifeform.nourishment.map(function(nItem) {
+          return {
+            name: nItem.name,
+            quantity: self._inventory[nItem.name] || 0
+          };
+        }),
+      hull: this._spacecraft.hull.map(function(hullItem) {
+          return {
+            name: hullItem.name,
+            condition: hullItem.condition
+          };
+        })
+    };
   }
 
 });
