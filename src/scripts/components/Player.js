@@ -1,9 +1,15 @@
 Crafty.c('Player', { // The player and the ship are one.
   
   _applyToInventory: function(name,amount) {
-    var qty = (this._inventory[name] || 0) + amount ;
+    var prevQty = this._inventory[name] || 0,
+      qty = prevQty + amount;
     this._inventory[name] = qty;
-    console.log(name+": "+amount.toString());
+    console.log(this._inventory);
+    Crafty.trigger('PlayerInventoryChanged',{
+      name: name,
+      quantity: qty,
+      previousQuantity: prevQty
+    });
     return qty;
   },
   
@@ -29,16 +35,15 @@ Crafty.c('Player', { // The player and the ship are one.
 
   _onHullEffect: function(value) {
     var hullIndex = this._spacecraft.hull.length,
-      currentH,
+      currentH, prevCond,
       currentCond;
     while(value !== 0) {
       if(hullIndex === 0) {
-        
         Crafty.trigger('PlayerDeath', {cause: "Your ship has been destroyed"});
-
         break;
       }
       currentH = this._spacecraft.hull[--hullIndex];
+      prevCond = currentH.condition;
       currentCond = currentH.condition + value;
       if(currentCond < 0) {
         value = currentCond;
@@ -47,6 +52,11 @@ Crafty.c('Player', { // The player and the ship are one.
         currentCond = currentH['max condition'];
       }
       currentH.condition = currentCond;
+      Crafty.trigger('PlayerHullChanged', {
+        name: currentH.name,
+        condition: currentCond,
+        prevCondition: prevCond
+      });
     }
 
   },
@@ -66,7 +76,6 @@ Crafty.c('Player', { // The player and the ship are one.
       if(currentEffect.effect === "condition") {
         this._onHullEffect(currentEffect.value);
       } else if(currentEffect.effect === "energy") {
-        console.log(this);
         this._onEnergyEffect(currentEffect.value);
       } else if(currentEffect.effect === "time") {
         this._onTimeEffect(currentEffect.value);
