@@ -21,11 +21,24 @@ Crafty.c('NavNodeButton', {
       });
   },
   
+
+  /**
+   * Specify text to appear inside the button
+   * @param  {String} buttonText - The text to display inside the button
+   * @return {NavNodeButton}
+   */
   text: function(buttonText) {
     this._text(buttonText);
     return this;
   },
   
+
+  /**
+   * Provide a callback function for the button on click
+   * @param  {Function} cb - the function to exectue
+   * @param  {Object} [context] - an execution context for the callback function
+   * @return {NavNodeButton}
+   */
   action: function(cb, context) {
     if(typeof context === 'undefined') {
       context = this;

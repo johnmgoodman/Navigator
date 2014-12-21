@@ -1,3 +1,10 @@
+/**
+ * Helper function to fade out the scene
+ * @param  {String} sceneName - Scene to transition to
+ * @param  {Object} sceneParam - Parameters to pass to the new scene
+ * @param  {Number} duration - duration of the fade (ms)
+ * @param  {String} color - css coor value of the fader
+ */
 module.exports = function(sceneName,sceneParam,duration,color) {
   var fader = Crafty.e('2D, DOM, Tween')
     .attr({

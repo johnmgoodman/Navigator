@@ -1,5 +1,11 @@
 Crafty.c('Player', { // The player and the ship are one.
   
+  /**
+   * Affect Player inventory quantity for a particular item. If the item doesn't already exist, it will be created with a quantity of 0 before applying the amount.
+   * @param  {String} name - Item reference id
+   * @param  {Float|Integer} amount - number to add to the current quantity (can be negative) 
+   * @return {Float|Integer} New quantity for the item (can be negative)
+   */
   _applyToInventory: function(name,amount) {
     var prevQty = this._inventory[name] || 0,
       qty = prevQty + (amount||0);
@@ -13,6 +19,8 @@ Crafty.c('Player', { // The player and the ship are one.
     return qty;
   },
   
+
+  /** Handle fuel ("energy") effects */
   _onEnergyEffect: function(value) {
     if(this._applyToInventory(this._spacecraft.fuel.name, value - this._spacecraft.fuel.efficiency * value) < 0) {
       Crafty.trigger('PlayerDeath', {cause: "Your "+this._spacecraft.fuel.name+" has depleted."});
@@ -20,6 +28,7 @@ Crafty.c('Player', { // The player and the ship are one.
     }
   },
 
+  /** Handle nourishment ("time") effects */
   _onTimeEffect: function(value) {
     var nindex = 0,
     countN = this._lifeform.nourishment.length,
@@ -33,6 +42,7 @@ Crafty.c('Player', { // The player and the ship are one.
     }
   },
 
+  /** Handle hull ("condition") effects */
   _onHullEffect: function(value) {
     var hullIndex = this._spacecraft.hull.length,
       currentH, prevCond,
@@ -62,6 +72,15 @@ Crafty.c('Player', { // The player and the ship are one.
 
   },
 
+
+
+  /**
+   * Handler for PlayerEffects event. Currently recognizes
+   *  "condition" effects - affects hull
+   *  "energy" - affects fuel
+   *  "time" - affects nourishment
+   * @param  {Array} effects - array of effects
+   */
   _onPlayerEffects: function(effects) {
     var effectIndex = 0,
       effectCount = effects.length,
@@ -84,6 +103,11 @@ Crafty.c('Player', { // The player and the ship are one.
     }
   },
 
+
+  /**
+   * Handler for PlayerDeath events
+   * @param  {Object} Details regarding the Player death
+   */
   _onPlayerDeath: function(deathDetails) {
     console.log(deathDetails.cause);
   },
@@ -94,28 +118,51 @@ Crafty.c('Player', { // The player and the ship are one.
     
     
     this._inventory = {};   // Storage
-    this._modifiers = {};   //
+    this._modifiers = {};
 
     this.bind('PlayerEffects', this._onPlayerEffects);
     this.bind('PlayerDeath', this._onPlayerDeath);
 
   },
   
+
+  /**
+   * Specify player lifeform data
+   * @param  {Object} lifeform data
+   * @return {Player}
+   */
   lifeform: function(lifeformData) {
     this._lifeform = Crafty.Game.lifeforms[lifeformData];
     return this;
   },
   
+
+  /**
+   * Specify player spacecraft
+   * @param  {Object} spacecraft data
+   * @return {Player}
+   */
   spacecraft: function(spacecraftData) {
     this._spacecraft = Crafty.Game.spacecrafts[spacecraftData];
     return this;
   },
 
+
+  /**
+   * Specify player inventory data
+   * @param  {Object} inventory data
+   * @return {Player}
+   */
   inventory: function(inventoryData) {
     this._inventory = inventoryData;
     return this;
   },
 
+
+  /**
+   * Provide hull, fuel and nourishment information about the player
+   * @return {Object} Player status
+   */
   status: function() {
     var self = this;
     return {
