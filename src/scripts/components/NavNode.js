@@ -1,5 +1,10 @@
 Crafty.c('NavNode', {
 
+  /**
+   * Generate the NavNodeButton that activates the Node
+   *
+   * @private
+   */
   _createButton: function() {
     var goButton = Crafty.e('NavNodeButton')
       .attr({
@@ -27,6 +32,12 @@ Crafty.c('NavNode', {
     }
   },
   
+
+  /**
+   * Generate/display the NavNodeText entity that describes the NavNode
+   *
+   * @private
+   */
   _createText: function() {
     if(typeof this._titleEntity === 'undefined') {
       this._titleEntity = Crafty.e('NavNodeText')
@@ -46,6 +57,12 @@ Crafty.c('NavNode', {
     }
   },
   
+  /**
+   * Handler for Click events
+   *
+   * @private
+   * @param  {MouseEvent} e
+   */
   _onClick: function(e) {
     Crafty.trigger('NavNodeClick',this._key);
     this._createText();
@@ -58,6 +75,13 @@ Crafty.c('NavNode', {
       .bind('Click',this._onClick);
   },
   
+  /**
+   * Specify the scene to enter when the node is activated.
+   *
+   * @param  {String} sceneName - Name of the target scene
+   * @param  {Object} param - Parameters to pass to the scene
+   * @return {NavNode}
+   */
   target: function(sceneName,param) {
     this._target = {
       sceneName: sceneName,
@@ -66,23 +90,50 @@ Crafty.c('NavNode', {
     return this;
   },
   
+
+  /**
+   * Activate the story scene before entering the NavNode's target scene
+   *
+   * @deprecated Too tightly coupled to story. Currently no alternative.
+   * @param  {String} storyId - The Story ID of the story
+   */
   story: function(storyId) {
     if(typeof storyId === 'undefined') return this._story;
     this._story = storyId;
   },
   
+
+  /**
+   * Specify the reference key of the NavNode
+   *
+   * @param  {String} navNodeKey - the name of the node
+   * @return {NavNode}
+   */
   key: function(navNodeKey) {
     if(typeof navNodeKey === 'undefined') return this._key;
     this._key = navNodeKey;
     return this;
   },
   
+
+  /**
+   * Specify the distance between the NavNode and the current location
+   * 
+   * @param  {Float} dist - distance in millions of lightyears
+   * @return {NavNode}
+   */
   distance: function(dist) {
     if(typeof dist === 'undefined') return this._distance;
     this._distance = dist;
     return this;
   },
   
+  /**
+   * Specify the NavNode title to display below its image
+   * 
+   * @param  {String} titleText - the title of the NavNode
+   * @return {NavNode}
+   */
   title: function(titleText) {
     if(typeof titleText === 'undefined') return this._title;
     this._title = titleText;
