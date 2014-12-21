@@ -3,12 +3,14 @@ Crafty.c('Player', { // The player and the ship are one.
   _applyToInventory: function(name,amount) {
     var qty = (this._inventory[name] || 0) + amount ;
     this._inventory[name] = qty;
+    console.log(name+": "+amount.toString());
     return qty;
   },
   
   _onEnergyEffect: function(value) {
     if(this._applyToInventory(this._spacecraft.fuel.name, value - this._spacecraft.fuel.efficiency * value) < 0) {
-      console.log('player dies');
+      Crafty.trigger('PlayerDeath', {cause: "Your "+this._spacecraft.fuel.name+" has depleted."});
+      console.log(value);
     }
   },
 
@@ -20,7 +22,7 @@ Crafty.c('Player', { // The player and the ship are one.
     for(;nindex < countN; nindex += 1) {
       currentN = this._lifeform.nourishment[nindex];
       if(this._applyToInventory(currentN.name,currentN.proportion * value) < 0) {
-        console.log('player dies');
+        Crafty.trigger('PlayerDeath', {cause: "Your "+currentN.name+" has depleted."});
       }
     }
   },
@@ -31,7 +33,9 @@ Crafty.c('Player', { // The player and the ship are one.
       currentCond;
     while(value !== 0) {
       if(hullIndex === 0) {
-        console.log('player dies');
+        
+        Crafty.trigger('PlayerDeath', {cause: "Your ship has been destroyed"});
+
         break;
       }
       currentH = this._spacecraft.hull[--hullIndex];
@@ -70,6 +74,10 @@ Crafty.c('Player', { // The player and the ship are one.
     }
   },
 
+  _onPlayerDeath: function(deathDetails) {
+    console.log(deathDetails.cause);
+  },
+
   init: function() {
     
     this.requires('Persist');
@@ -79,6 +87,7 @@ Crafty.c('Player', { // The player and the ship are one.
     this._modifiers = {};   //
 
     this.bind('PlayerEffects', this._onPlayerEffects);
+    this.bind('PlayerDeath', this._onPlayerDeath);
 
   },
   

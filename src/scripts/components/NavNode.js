@@ -17,8 +17,8 @@ Crafty.c('NavNode', {
           return function() {
             Crafty.trigger('NavNodeActivate',self);
             Crafty.trigger('PlayerEffects',[
-                {effect: "energy", value: self._distance * -1000},
-                {effect: "time", value: self._distance * -340}
+                {effect: "energy", value: self._distance * -100},
+                {effect: "time", value: self._distance * -34}
               ]);
           };
         })(this),

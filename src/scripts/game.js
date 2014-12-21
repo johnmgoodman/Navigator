@@ -32,7 +32,13 @@
   Crafty.load(gameAssets,function() {
     Crafty.Game.Player = Crafty.e('Player')
       .lifeform("human")
-      .spacecraft("blue origin");
+      .spacecraft("blue origin")
+      .inventory({
+        "hydrogen": 195,
+        "oxygen": 225,
+        "water": 123,
+        "food": 77
+      });
     Crafty.enterScene('Navigation', {sceneNode: '_top'});
   });
 })(Crafty);
