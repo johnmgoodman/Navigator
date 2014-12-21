@@ -71,6 +71,35 @@ Crafty.defineScene('Navigation', (function() {
   },
 
 
+  UIGauges = function() {
+    var status = Crafty.Game.Player.status();
+
+
+    // Fuel Gauge
+    Crafty.e('NavGauge')
+      .color('#004488')
+      .unitWidth(1)
+      .value(status.fuel.quantity)
+      .bind('ViewportScroll', function() {
+        this.x = Math.abs(Crafty.viewport.x) + 20;
+        this.y = Math.abs(Crafty.viewport.y) + 20;
+      });
+
+    // Hull Gauges
+    status.hull.map(function(hullItem,index) {
+      Crafty.e('NavGauge')
+        .color('#448800')
+        .unitWidth(0.25)
+        .value(hullItem.condition)
+        .bind('ViewportScroll', function() {
+          this.x = Math.abs(Crafty.viewport.x) + 20;
+          this.y = Math.abs(Crafty.viewport.y) + 30 + 10 * index;
+        });
+    });
+
+  },
+
+
   buildUI = function(param) {
     var backBtn = Crafty.e('2D, DOM')
       .attr({w:32, h: 32})
@@ -78,6 +107,8 @@ Crafty.defineScene('Navigation', (function() {
         this.x = Math.abs(Crafty.viewport.x) + 20;
         this.y = Math.abs(Crafty.viewport.y) + Crafty.viewport.height - 20 - 32;
       });
+
+    UIGauges();
 
     if(Crafty('NavHistory').get(0).history().length === 0) {
       backBtn.addComponent('UIBackDisabled');
