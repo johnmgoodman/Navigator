@@ -85,6 +85,7 @@ gulp.task('gamestyle',function() {
 gulp.task('copy',['jslib','images']);
 //gulp.task('styles',['scss','css']);
 gulp.task('styles',['gamestyle']);
+gulp.task('jsgame',['lint','game']);
 gulp.task('default',['lint','copy','jade','styles','game']);
 
 
