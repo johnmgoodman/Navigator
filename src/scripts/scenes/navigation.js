@@ -1,3 +1,13 @@
+/*
+ 
+  Navigation Scene Parameters
+
+  Properties:
+
+    sceneNode: Reference ID of the scene (see navigation.json)
+
+ */
+
 Crafty.defineScene('Navigation', (function() {
     
   var dbg = 0,
@@ -71,9 +81,13 @@ Crafty.defineScene('Navigation', (function() {
   },
 
 
+
+
+  /**
+   * Generate the navigation status gauges
+   */
   UIGauges = function() {
     var status = Crafty.Game.Player.status();
-
 
     // Fuel Gauge
     Crafty.e('NavGauge')
@@ -100,6 +114,10 @@ Crafty.defineScene('Navigation', (function() {
   },
 
 
+  /**
+   * Build the navigation user interface (back button and gauges)
+   * @param  {Object} param - the scene parameters
+   */
   buildUI = function(param) {
     var backBtn = Crafty.e('2D, DOM')
       .attr({w:32, h: 32})
@@ -122,9 +140,13 @@ Crafty.defineScene('Navigation', (function() {
 
 
 
+  /**
+   * Handler for NavNodeActivate events. Changes the scene when a NavNode is activated
+   * @param  {NavNode} node - the node that was activated
+   */
   onNavNodeActivate = function(node) {
     var sceneName, sceneParam, num = 0;
-    if(typeof node._story === 'undefined') {
+    if(typeof node._story === 'undefined') { // Bad. Must do this better
       sceneName = node._target.sceneName;
       sceneParam = node._target.param;
     } else {
@@ -137,12 +159,19 @@ Crafty.defineScene('Navigation', (function() {
         }
       };
     }
-    console.log(Date.now());
     Crafty.Game.helpers.scene_fadeout(sceneName,sceneParam);
   };
 
 
-  
+  /*
+ 
+  Navigation Scene
+
+  Parameter Properties:
+
+    sceneNode: Reference ID of the scene (see navigation.json)
+
+ */
   return function(param) {
     
     var sceneNode = Crafty.Game.navigationNodes[param.sceneNode],
@@ -154,7 +183,6 @@ Crafty.defineScene('Navigation', (function() {
         x: 0,
         y: 0
       });
-
       
     if(typeof sceneNode.image !== 'undefined') {
       background.css('background-image','url('+sceneNode.image+')');

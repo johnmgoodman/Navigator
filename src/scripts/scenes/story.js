@@ -2,6 +2,12 @@ Crafty.defineScene('Story', (function() {
   
   var currentStory = null,
     nextScene = {},
+
+
+    /**
+     * Simple factory function for creating StoryNodes
+     * @param  {Object} storyData
+     */
     storyNodeFactory = function(storyData) {
       Crafty.e('StoryNode')
         .attr({
@@ -12,6 +18,13 @@ Crafty.defineScene('Story', (function() {
         })
         .nodeData(storyData);
     },
+
+
+    /**
+     * Handler for StoryOptionSelect events. Changes the StoryNode
+     * @param  {[type]}
+     * @return {[type]}
+     */
     onStoryOptionSelect = function(value) {
       if(value === '_storyend') {
         Crafty.Game.helpers.scene_fadeout(nextScene.name,nextScene.param);
@@ -19,6 +32,11 @@ Crafty.defineScene('Story', (function() {
         storyNodeFactory(currentStory.nodes[value]);
       }
     },
+
+
+    /**
+     * Handler for SceneDestory events. Used to unbind the scene listeners
+     */
     onSceneDestroy = function() {
       Crafty.unbind('SceneDestroy',onSceneDestroy);
       Crafty.unbind('StoryOptionSelect',onStoryOptionSelect);
