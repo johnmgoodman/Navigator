@@ -31,6 +31,7 @@
           "irda vo": {
               "x": 720,
               "y": 640,
+              "story": "options requirement test",
               "image": "assets/images/galaxy_4_72x72.png"
             },
           "moth mita": {

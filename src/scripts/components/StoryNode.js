@@ -20,6 +20,45 @@ Crafty.c('StoryNode',{
     }
   },
   
+  
+  /**
+   * 
+   * 
+   * 
+   */
+  _satisfiesOptionRequirements: (function() {
+    var playerStatus,
+      requirementTypes = {
+        inventory: function(requirement) {
+            var inv = playerStatus.inventory;
+            if(typeof inv[requirement.name] === 'number') {
+              if(inv[requirement.name] >= requirement.quantity) {
+                return true;
+              }
+            }
+            return false;
+          }
+          
+      };
+      
+      
+    return function(optionRequirements) {
+      var requirement,
+        reqIndex = 0,
+        reqLength = optionRequirements.length;
+        
+      playerStatus = Crafty.Game.Player.status();
+      
+      for(;reqIndex < reqLength; reqIndex +=1) {
+        requirement = optionRequirements[reqIndex];
+        if(!requirementTypes[requirement.type](requirement)) {
+          return false;
+        }
+      }
+      return true;
+    };
+  })(),
+  
     
   init: function() {
     this.requires('2D, DOM, HTML, Mouse')
@@ -46,7 +85,9 @@ Crafty.c('StoryNode',{
     if(typeof options !== 'undefined') {
       noptions = options.length;
       while(optionIndex < noptions) {
-        this.addOption(options[optionIndex++]);
+        if(typeof options[optionIndex].requires === 'undefined' || this._satisfiesOptionRequirements(options[optionIndex].requires)) {
+          this.addOption(options[optionIndex++]);
+        }
       }
     } else {
       this.addOption({"text": "Continue", "node":"_storyend"});

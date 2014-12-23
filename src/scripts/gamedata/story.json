@@ -83,5 +83,27 @@
       }
 
     }
+  },
+  
+  "options requirement test": {
+    "initial": "only node",
+    "nodes": {
+      "only node": {
+        "text": "This or that happened",
+        "options": [
+          {
+            "text": "Okay..",
+            "node": "_storyend"
+          },
+          {
+            "text": "I have water!",
+            "node": "_storyend",
+            "requires": [
+              { "type": "inventory", "name": "water", "quantity": 1}
+            ]
+          }
+        ]
+      }
+    }
   }
 }

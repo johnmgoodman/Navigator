@@ -180,7 +180,7 @@ Crafty.c('Player', { // The player and the ship are one.
 
 
   /**
-   * Provide hull, fuel and nourishment information about the player
+   * Provide hull, fuel, nourishment and inventory information about the player
    * @return {Object} Player status
    */
   status: function() {
@@ -201,7 +201,16 @@ Crafty.c('Player', { // The player and the ship are one.
             name: hullItem.name,
             condition: hullItem.condition
           };
-        })
+        }),
+      inventory: (function() {
+          var inv = {}, itemName;
+          for(itemName in self._inventory) {
+            if(self._inventory.hasOwnProperty(itemName)) {
+              inv[itemName] = self._inventory[itemName];
+            }
+          }
+          return inv;
+        })()
     };
   }
 
