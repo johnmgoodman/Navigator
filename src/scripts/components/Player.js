@@ -44,30 +44,50 @@ Crafty.c('Player', { // The player and the ship are one.
 
   /** Handle hull ("condition") effects */
   _onHullEffect: function(value) {
-    var hullIndex = this._spacecraft.hull.length,
+    var hullIndex, hullLength = this._spacecraft.hull.length,
       currentH, prevCond,
-      currentCond;
+      currentCond,
+      iter = Math.sign(value);
+      
+    if(iter === 1) {
+      hullIndex = 0;
+    } else if(iter === -1) {
+      hullIndex = hullLength - 1;
+    } else {
+      return null;
+    }
+      
+      
     while(value !== 0) {
-      console.log('fdsfdf');
-      if(hullIndex === 0) {
+      
+      currentH = this._spacecraft.hull[hullIndex];
+      prevCondition = currentH.condition;
+      currentH.condition += value;
+      value = 0;
+      
+      
+      /* Carry over effects to next hull item */
+      if( currentH.condition > currentH['max condition']) {
+        value = currentH.condition - currentH['max condition'];
+        currentH.condition = currentH['max condition'];
+      } else if(currentH.condition < 0 && iter === -1) {
+        value = currentH.condition;
+        currentH.condition = 0;
+      }
+      
+      
+      if(hullIndex === 0 && value !== 0) {
+        value = 0;
         Crafty.trigger('PlayerDeath', {cause: "Your ship has been destroyed"});
-        break;
       }
-      currentH = this._spacecraft.hull[--hullIndex];
-      prevCond = currentH.condition;
-      currentCond = currentH.condition + value;
-      if(currentCond < 0) {
-        value = currentCond;
-        currentCond = 0;
-      } else if(currentCond > currentH['max condition']) {
-        currentCond = currentH['max condition'];
-      }
-      currentH.condition = currentCond;
+      
       Crafty.trigger('PlayerHullChanged', {
         name: currentH.name,
         condition: currentCond,
         prevCondition: prevCond
       });
+      
+      hullIndex += iter;
     }
 
   },
