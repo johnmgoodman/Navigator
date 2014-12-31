@@ -9,6 +9,16 @@ Crafty.c('NavGauge', {
       .css('border-radius','2px');
 
   },
+  
+  /**
+   * Specify the name of the gauge
+   * @param  {String} gaugeName
+   * @return {NavGauge}
+   */
+  name: function(gaugeName) {
+    this._name = gaugeName;
+    return this;
+  },
 
   /**
    * Specify width in pixels for every 1 unit value
