@@ -69,6 +69,24 @@
     },
   "moth mita": {
       "title": "Moth Mita",
-      "viewport": {"x": 0, "y": 0}
-    }
+      "width": 900,
+      "height": 600,
+      "image": "assets/images/stars_0_900x900.png",
+      "viewport": {"x":-20, "y":-20},
+      "children": {
+        "_default": {
+          "width":72,
+          "height": 72,
+          "image": "assets/images/solarsystem_0_72x72.png"
+        },
+        "shorssim": {
+          "x": 200,
+          "y": 300
+        }
+      }
+    },
+  "shorssim": {
+    "title": "Shorssim System",
+    "viewport": {"x": 0, "y": 0}
+  }
 }
