@@ -18,6 +18,9 @@
       "url": "http://www.opensource.org/licenses/mit-license.php"
     }
   ],
+  "scripts": {
+    "build_directories": "sh ./build_directories.sh"
+  },
   "description": "An experimental interactive fiction exploring outer space.",
   "dependencies": {
     "craftyjs": "^0.6.3"
