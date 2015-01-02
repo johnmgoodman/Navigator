@@ -3,6 +3,58 @@ Crafty.defineScene('Story', (function() {
   var currentStory = null,
     nextScene = {},
 
+    getStoriesByTags = function(tags) {
+      var ntags, tagIndex, tag, result,
+        stories = Crafty.Game.stories,
+        storyKey,
+        story,
+        found = [],
+
+        matchTags = function(storyTag) {
+          return tags.indexOf(storyTag);
+        };
+
+      if(typeof tags === 'undefined') {
+        return found;
+      } else if(typeof tags === 'string') {
+        tags = [tags];
+      }
+
+      ntags = tags.length;
+
+      for(storyKey in stories) {
+        if(stories.hasOwnProperty(storyKey)) {
+          story = stories[storyKey];
+          if(story.tags instanceof Array) {
+            result = story.tags.map(matchTags);
+            if(result.indexOf(-1) === -1) {
+              found.push(story);
+            }
+          }
+        }
+      }
+
+      return found;
+
+    },
+
+
+    findStory = function(tags) {
+      var foundStories = getStoriesByTags(param.tags),
+        story,
+        storyFound = false,
+        foundStory = null;
+
+        while(storyFound === false && foundStories.length !== 0) {
+          story = foundStories.splice(Math.floor(Math.random() * foundStories.length),1);
+          // TODO: if player meets story requirements...
+          storyFound = true;
+          foundStory = story;
+        }
+
+        return foundStory;
+    },
+
 
     /**
      * Simple factory function for creating StoryNodes
@@ -44,14 +96,13 @@ Crafty.defineScene('Story', (function() {
   return function(param) {
     if(param.hasOwnProperty('story')) {
       currentStory = Crafty.Game.stories[param.story];
-    } else {
-      // TEMPORARY. this is the only story
-      currentStory = Crafty.Game.stories.spaceworm;
+    } else if(param.hasOwnProperty('tags')) {
+      currentStory = findStory(param.tags);
     }
     
     if(param.hasOwnProperty('sceneRelay')) {
-      nextScene.name = param.sceneRelay.name;
-      nextScene.param = param.sceneRelay.param;
+      nextScene.name = param.sceneRelay.sceneName;
+      nextScene.param = param.sceneRelay.sceneParam;
     }
     
     Crafty.bind('SceneDestroy',onSceneDestroy);

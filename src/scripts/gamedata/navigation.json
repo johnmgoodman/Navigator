@@ -14,14 +14,22 @@
               "x":400,
               "y": 400,
               "image": "assets/images/galaxy_2_72x72.png",
-              "story": "spaceworm",
-              "distance": 1.091
+              "distance": 1.091,
+              "target": {
+                "sceneName": "Story",
+                "sceneParam": {
+                  "story": "spaceworm",
+                  "sceneRelay": {
+                    "sceneName": "Navigation",
+                    "sceneParam": { "sceneNode": "niphar" }
+                  }
+                }
+              }
             },
           "lodurim zeta": {
               "x":620,
               "y": 480,
-              "story": "height test",
-              "distance": 2.890
+              "distance": 2.890,
             },
           "ozumiti": {
               "x": 420,
@@ -31,7 +39,6 @@
           "irda vo": {
               "x": 720,
               "y": 640,
-              "story": "options requirement test",
               "image": "assets/images/galaxy_4_72x72.png"
             },
           "moth mita": {

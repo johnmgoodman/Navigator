@@ -37,13 +37,13 @@ Crafty.defineScene('Navigation', (function() {
         y: nodeData.y
       })
       .key(nodeData._key)
-      .css('background','url('+(nodeData.image||defaults.image)+') center')
-      .target('Navigation',{
-        sceneNode: nodeData._key
-      });
+      .css('background','url('+(nodeData.image||defaults.image)+') center');
       
-    if(nodeData.hasOwnProperty('story')) {
-      node.story(nodeData.story);
+
+    if(nodeData.hasOwnProperty('target')){
+      node.target(nodeData.target.sceneName,nodeData.target.sceneParam);
+    } else {
+      node.target('Navigation', {sceneNode: nodeData._key});
     }
       
     if(nodeData.hasOwnProperty('distance')) {
@@ -145,20 +145,9 @@ Crafty.defineScene('Navigation', (function() {
    * @param  {NavNode} node - the node that was activated
    */
   onNavNodeActivate = function(node) {
-    var sceneName, sceneParam, num = 0;
-    if(typeof node._story === 'undefined') { // Bad. Must do this better
-      sceneName = node._target.sceneName;
-      sceneParam = node._target.param;
-    } else {
-      sceneName = 'Story';
-      sceneParam = {
-        story: node._story,
-        sceneRelay: {
-          name: node._target.sceneName,
-          param: node._target.param
-        }
-      };
-    }
+    var sceneName, sceneParam;
+    sceneName = node._target.sceneName;// Bad. Must do this better
+    sceneParam = node._target.param;
     Crafty.Game.helpers.scene_fadeout(sceneName,sceneParam);
   };
 
