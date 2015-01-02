@@ -1,0 +1,59 @@
+{
+  "title": "Outer Space",
+  "width": 1400,
+  "height": 900,
+  "viewport": {"x": -300, "y":-320},
+  "children": {
+  "_default": {
+      "width":72,
+      "height": 72,
+      "image": "assets/images/galaxy_1_72x72.png"
+    },
+    "niphar": {
+      "x":400,
+      "y": 400,
+      "image": "assets/images/galaxy_2_72x72.png",
+      "distance": 1.091,
+      "target": {
+        "sceneName": "Story",
+        "sceneParam": {
+          "story": "spaceworm",
+          "sceneRelay": {
+            "sceneName": "Navigation",
+            "sceneParam": { "sceneNode": "niphar" }
+          }
+        }
+      }
+    },
+    "lodurim zeta": {
+      "x":620,
+      "y": 480,
+      "distance": 2.890,
+      "target": {
+        "sceneName": "Story",
+        "sceneParam": {
+          "tags": ["lodurim"],
+          "sceneRelay": {
+            "sceneName": "Navigation",
+            "sceneParam": { "sceneNode": "lodurim zeta" }
+          }
+        }
+      }
+    },
+    "ozumiti": {
+      "x": 420,
+      "y": 757,
+      "image": "assets/images/galaxy_3_72x72.png"
+    },
+    "irda vo": {
+      "x": 720,
+      "y": 640,
+      "image": "assets/images/galaxy_4_72x72.png"
+    },
+    "moth mita": {
+      "x": 600,
+      "y": 40,
+      "image": "assets/images/galaxy_0_72x72.png"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "initial": "potato",
+  "tags": ["moth mita", "lodurim"],
+  "repeat": true,
+  "nodes": {
+    "potato": {
+      "effects": [
+        {"effect": "inventory", "item": "potato", "value": 1}
+      ],
+      "text": "You come upon a potato drifting through outer space."
+    }
+  }
+}

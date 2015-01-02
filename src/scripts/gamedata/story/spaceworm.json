@@ -1,0 +1,75 @@
+{
+  "initial": "detected",
+  "repeat": false,
+  
+  "nodes": {
+    "detected": {
+      "text": "While traveling, your sensors detect a distant object obstructing your trajectory. You see nothing ahead but the deep, black and starry void.",
+      "options": [
+        {
+          "text": "Continue cautiously with the current trajectory unchanged",
+          "node": "details"
+        },
+        {
+          "text": "Slightly alter trajectory to avoid the unidentified object",
+          "node": "slightlyalter"
+        }
+      ]
+    },
+    "details": {
+      "text": "Alert, you continue on your original path with elevated curiosity. You see nothing yourself, but the computer is collecting more details about the foreign object. It's radiating with low levels of infrared light, tubular in shape, and roughly twice the volume of your ship.",
+      "options": [
+        {
+          "text": "Continue approaching the object",
+          "node": "doubt"
+        },
+        {
+          "text": "Change path before getting too close",
+          "node": "slightlyalter"
+        }
+      ]
+    },
+    "slightlyalter": {
+      "text": "You expend some energy to avoid the object. This is no place to gamble over senseless curiosities.",
+      "effects": [
+        { "effect": "energy", "value": -0.030 }
+      ]
+    },
+    "doubt": {
+      "text": "Caution and curiosity thrust your attention directly ahead. Still, you see nothing and transient doubts leak from between your thoughts. The computer has misidentified objects in the past; albeit none this substantial. Perhaps something is interfering with its sensors.",
+      "options": [
+        {
+          "text": "Check readings for a possible source of interference",
+          "node": "interference"
+        },
+        {
+          "text": "Wait a little longer",
+          "node": "sighted"
+        }
+      ]
+    },
+    "interference": {
+      "text": "You slowly avert your gaze and analyze the sensor data for anomalies. Nothing unusual.",
+      "options": [
+        {
+          "text": "Continue looking ahead",
+          "node": "unexpected"
+        }
+      ]
+    },
+    "sighted": {
+      "text": "Mild paranoia. It's still too early to warrant checking for interference or broken equipment. Moments later, your persistence proves valuable when you spot an enormous worm-like creature fast advancing toward your ship. With a massive burst from your engines, you're able to veer out of its blind path just in time to avoid a devastating impact. Shaken, you manage to realign to your original course.",
+      "effects": [
+        {"effect": "energy", "value": -0.200}
+      ]
+      
+    },
+    "unexpected": {
+      "text": "Confused, you sigh and turn from the computer to look back into the empty space ahead. Your eyes don't adjust and you blink, but suddenly you're taken aback by a terrible realization: there's a giant space worm hurtling toward your ship. You blast your engines sidewards but the creature is too close. Wreckage flies in all directions. Parts of your hull are left twisted and shredded in a bloody nebula of worm an steel.",
+      "effects": [
+        {"effect": "energy", "value": -0.200},
+        {"effect": "condition", "value": -600}
+      ]
+    }
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "blue origin": {
-    "fuel": { "name":"hydrogen", "efficiency": 0.800 },
-    "hull": [
-      { "name": "body", "condition": 700, "max condition": 700},
-      { "name": "shields", "condition": 400, "max condition": 400}
-    ]
-  }
-}

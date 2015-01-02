@@ -21,10 +21,10 @@
 
   /* Game Data (spacecrafts, stories, navigation, etc.) */
   Crafty.Game = {}; // Global Object! Yeck!
-  Crafty.Game.navigationNodes = require('./gamedata/navigation.json');
-  Crafty.Game.stories = require('./gamedata/story.json');
-  Crafty.Game.lifeforms = require('./gamedata/lifeforms.json');
-  Crafty.Game.spacecrafts = require('./gamedata/spacecrafts.json');
+  Crafty.Game.navigationNodes = require('./gamedata/navigation.js');
+  Crafty.Game.stories = require('./gamedata/story.js');
+  Crafty.Game.lifeforms = require('./gamedata/lifeform.js');
+  Crafty.Game.spacecrafts = require('./gamedata/spacecraft.js');
 
 
   /* Useful helper functions */
