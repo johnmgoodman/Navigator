@@ -8,14 +8,14 @@ Crafty.defineScene('Story', (function() {
         stories = Crafty.Game.stories,
         storyKey,
         story,
-        found = [],
+        storyMatches = [],
 
         matchTags = function(storyTag) {
           return tags.indexOf(storyTag);
         };
 
       if(typeof tags === 'undefined') {
-        return found;
+        return storyMatches;
       } else if(typeof tags === 'string') {
         tags = [tags];
       }
@@ -28,25 +28,26 @@ Crafty.defineScene('Story', (function() {
           if(story.tags instanceof Array) {
             result = story.tags.map(matchTags);
             if(result.indexOf(-1) === -1) {
-              found.push(story);
+              storyMatches.push(story);
             }
           }
         }
       }
-
-      return found;
+      return storyMatches;
 
     },
 
 
     findStory = function(tags) {
-      var foundStories = getStoriesByTags(param.tags),
+      var foundStories = getStoriesByTags(tags),
         story,
         storyFound = false,
         foundStory = null;
 
+        console.log(foundStories);
+
         while(storyFound === false && foundStories.length !== 0) {
-          story = foundStories.splice(Math.floor(Math.random() * foundStories.length),1);
+          story = foundStories.splice(Math.floor(Math.random() * foundStories.length),1)[0];
           // TODO: if player meets story requirements...
           storyFound = true;
           foundStory = story;

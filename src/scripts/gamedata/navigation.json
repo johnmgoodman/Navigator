@@ -30,6 +30,16 @@
               "x":620,
               "y": 480,
               "distance": 2.890,
+              "target": {
+                "sceneName": "Story",
+                "sceneParam": {
+                  "tags": ["lodurim"],
+                  "sceneRelay": {
+                    "sceneName": "Navigation",
+                    "sceneParam": { "sceneNode": "lodurim zeta" }
+                  }
+                }
+              }
             },
           "ozumiti": {
               "x": 420,
