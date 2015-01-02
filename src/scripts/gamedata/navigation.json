@@ -18,7 +18,7 @@
               "target": {
                 "sceneName": "Story",
                 "sceneParam": {
-                  "story": "spaceworm",
+                  "tags": ["spaceworm","space potato"],
                   "sceneRelay": {
                     "sceneName": "Navigation",
                     "sceneParam": { "sceneNode": "niphar" }
