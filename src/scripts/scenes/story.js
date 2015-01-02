@@ -9,9 +9,8 @@ Crafty.defineScene('Story', (function() {
         storyKey,
         story,
         storyMatches = [],
-
         matchTags = function(storyTag) {
-          return tags.indexOf(storyTag);
+          return tags.indexOf(storyTag) !== -1;
         };
 
       if(typeof tags === 'undefined') {
@@ -25,9 +24,9 @@ Crafty.defineScene('Story', (function() {
       for(storyKey in stories) {
         if(stories.hasOwnProperty(storyKey)) {
           story = stories[storyKey];
-          if(story.tags instanceof Array) {
-            result = story.tags.map(matchTags);
-            if(result.indexOf(-1) === -1) {
+          if(story.repeat !== false && story.tags instanceof Array) {
+            result = story.tags.filter(matchTags);
+            if(result.length !== 0) {
               storyMatches.push(story);
             }
           }
@@ -43,8 +42,6 @@ Crafty.defineScene('Story', (function() {
         story,
         storyFound = false,
         foundStory = null;
-
-        console.log(foundStories);
 
         while(storyFound === false && foundStories.length !== 0) {
           story = foundStories.splice(Math.floor(Math.random() * foundStories.length),1)[0];
@@ -99,6 +96,9 @@ Crafty.defineScene('Story', (function() {
       currentStory = Crafty.Game.stories[param.story];
     } else if(param.hasOwnProperty('tags')) {
       currentStory = findStory(param.tags);
+      if(typeof currentStory.repeat === 'undefined') {
+        currentStory.repeat = false;
+      }
     }
     
     if(param.hasOwnProperty('sceneRelay')) {

@@ -18,7 +18,6 @@ Crafty.c('Player', { // The player and the ship are one.
     });
     return qty;
   },
-  
 
   /** Handle fuel ("energy") effects */
   _onEnergyEffect: function(value) {
@@ -108,7 +107,7 @@ Crafty.c('Player', { // The player and the ship are one.
       actions = {
         "condition": "_onHullEffect",
         "energy": "_onEnergyEffect",
-        "time": "_onEnergyEffect"
+        "time": "_onTimeEffect"
       };
 
     for (; effectIndex < effectCount; effectIndex++) {
@@ -119,6 +118,8 @@ Crafty.c('Player', { // The player and the ship are one.
         this._onEnergyEffect(currentEffect.value);
       } else if(currentEffect.effect === "time") {
         this._onTimeEffect(currentEffect.value);
+      } else if(currentEffect.effect === "inventory") {
+        this._applyToInventory(currentEffect.item,currentEffect.value);
       }
     }
   },
